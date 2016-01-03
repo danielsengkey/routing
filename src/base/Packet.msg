@@ -13,22 +13,12 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package routing.base;
-
 //
-// Covers basic functionalities of a node.
-// Behaviours on routing method should be covered in subclasses.
-// @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+// Network Packet
 //
-simple NodeBase
-{
-    parameters:
-        string identity = default("id");
-        bool logVerbose = default(false);
-        int senderNodeID;
-        int destinationNodeID;
-        @display("i=misc/node2");
-        
-    gates:
-        inout gate[];
+message NetworkPacket {
+        short sourceID;
+        short destinationID;
+        short hopCount;
+        int hops[];
 }

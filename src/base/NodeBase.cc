@@ -19,21 +19,35 @@ Define_Module(NodeBase);
 
 void NodeBase::initialize()
 {
-    logVerbose  = par("verbose").boolValue();
+    logVerbose  = par("logVerbose").boolValue();
 
     /** Check if the identity parameter has valid value. */
-    if (
-            (strcmp(par("identity").stringValue(),"index")!=0)
-            ||
-            (strcmp(par("identity").stringValue(),"id")!=0)
-            )
-        error("Identity must be set as \"index\" or \"id\" (CASE SENSITIVE)");
+    identityValue = par("identity").stringValue();
 
-    myId        = par("identity").stringValue()?getIndex():getId();
+    if (
+            !(
+                    (strcmp(identityValue,"index")==0)
+                    ||
+                    (strcmp(identityValue,"id")==0)
+            )
+    )
+        error("Identity must be set as \"index\" or \"id\" (CASE SENSITIVE), instead of " + *identityValue);
+
+    myId                = par("identity").stringValue()=="index"?getIndex():getId();
+    senderNodeID        = par("senderNodeID").doubleValue();
+    destinationNodeID   = par("destinationNodeID").doubleValue();
 
     inGateName  = "gate$i";
     outGateName = "gate$o";
     totalGate   = gateSize(inGateName);
+
+    cTopology *topo = new cTopology("topo");
+    std::vector<std::string> nedTypes;
+    nedTypes.push_back(getNedTypeName());
+    topo->extractByNedTypeName(nedTypes);
+
+    numberOfNodes = topo->getNumNodes();
+    delete topo;
 
     broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1));
 }
@@ -46,6 +60,9 @@ void NodeBase::handleMessage(cMessage *msg)
             break;
         case DISCOVERY_REPLY:
             handleDiscoveryReply(msg);
+            break;
+        case NETWORK_PACKET:
+            handleNetworkPacket(msg);
             break;
         default:
             EV << "Received unknown message type." << endl;
@@ -63,7 +80,25 @@ void NodeBase::handleDiscoveryReply(cMessage *msg)
     // TODO Function implemented in subclass.
 }
 
-DiscoveryMessage *NodeBase::prepareMessage(int messageKind, int destinationId)
+void NodeBase::handleNetworkPacket(cMessage *msg)
+{
+    NetworkPacket *receivedNP = check_and_cast<NetworkPacket *>(msg);
+
+    if(receivedNP->getDestinationID()==myId)
+    {
+        EV << "Received " << receivedNP->getName() << " from " << receivedNP-> getSourceID() << endl;
+        EV << "Hops: ";
+        for(int i=0; i<receivedNP->getHopsArraySize(); i++)
+        {
+            EV << receivedNP->getHops(i) << " ";
+        }
+        EV << endl;
+        delete receivedNP;
+    }
+    // TODO Packet forwarding method.
+}
+
+DiscoveryMessage* NodeBase::prepareMessage(int messageKind, int destinationId)
 {
     DiscoveryMessage *discoveryMsg = NULL;
 
@@ -81,6 +116,17 @@ DiscoveryMessage *NodeBase::prepareMessage(int messageKind, int destinationId)
     discoveryMsg->setSourceID(myId);
     discoveryMsg->setDestinationID(destinationId);
     return discoveryMsg;
+}
+
+NetworkPacket* NodeBase::prepareNetworkPacket(int destinationId)
+{
+    EV << "Preparing Network Packet for Node " << destinationId << endl;
+    NetworkPacket *networkPacket = new NetworkPacket("Network packet", NETWORK_PACKET);
+    networkPacket->setSourceID(myId);
+    networkPacket->setDestinationID(destinationId);
+    networkPacket->setHopsArraySize(numberOfNodes);
+    networkPacket->setHopCount(0);
+    return networkPacket;
 }
 
 int NodeBase::findLowestCostGate(int node)

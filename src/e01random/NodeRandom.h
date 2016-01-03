@@ -13,22 +13,30 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package routing.base;
+#ifndef NODERANDOM_H_
+#define NODERANDOM_H_
 
-//
-// Covers basic functionalities of a node.
-// Behaviours on routing method should be covered in subclasses.
-// @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
-//
-simple NodeBase
-{
-    parameters:
-        string identity = default("id");
-        bool logVerbose = default(false);
-        int senderNodeID;
-        int destinationNodeID;
-        @display("i=misc/node2");
-        
-    gates:
-        inout gate[];
-}
+#include <NodeBase.h>
+
+/**
+ * This node implements random routing.
+ * The instance of this class will select random gate
+ * with uniform probability.
+ * Therefore this class only override the handleNetworkPacket() method.
+ * @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+ * @see NodeBase
+ */
+
+class NodeRandom: public NodeBase {
+    /**
+     * A method to handle received network packet.
+     * This method overrides handleNetworkPacket()
+     * from the superclass (NodeBase).
+     */
+    virtual void handleNetworkPacket(cMessage *msg);
+
+    virtual void initialize();
+
+};
+
+#endif /* NODERANDOM_H_ */

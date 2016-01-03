@@ -1,0 +1,5 @@
+This Example 01 is a simple routing example.
+The used routing strategy is random forwarding.
+It means the routers (nodes) will choose random gate to forward the packet.
+This example is similar with TicToc.
+No neighbour discovery in this example.

@@ -18,6 +18,7 @@
 
 #include <omnetpp.h>
 #include <discovery_m.h>
+#include <Packet_m.h>
 
 /**
  * NodeBase class.
@@ -26,7 +27,7 @@
  */
 class NodeBase : public cSimpleModule
 {
-  private:
+  protected:
     /** A variable storing in gate name */
     const char *inGateName;
 
@@ -48,6 +49,18 @@ class NodeBase : public cSimpleModule
     bool logVerbose;
 
     /**
+     * Is this node the sender for network packet?
+     */
+    int senderNodeID;
+
+    /**
+     * Destination ID of the network packet.
+     */
+    int destinationNodeID;
+
+    const char *identityValue;
+
+    /**
      * This method will print verbose messages if the logVerbose is true.
      * @see logVerbose
      */
@@ -59,13 +72,14 @@ class NodeBase : public cSimpleModule
     /** Received Discovery Message. */
     DiscoveryMessage receivedDiscovery;
 
-  protected:
-    // Class members
+    /** Number of nodes in the network */
+    int numberOfNodes;
 
     /** Enumerated message kind for easier identification. */
     enum messageKind{
         DISCOVERY_MESSAGE,
-        DISCOVERY_REPLY
+        DISCOVERY_REPLY,
+        NETWORK_PACKET
     };
 
     /** A simple routing table. */
@@ -93,6 +107,9 @@ class NodeBase : public cSimpleModule
     /** A method for message preparation. If a broadcast message then the destination id is -1. */
     DiscoveryMessage *prepareMessage(int messageKind, int destinationId);
 
+    /** Prepare network packet */
+    NetworkPacket *prepareNetworkPacket(int destinationId);
+
     /** Module initialization. */
     virtual void initialize();
 
@@ -118,6 +135,11 @@ class NodeBase : public cSimpleModule
      * * @see handleDiscoveryMessage()
      */
     virtual void handleDiscoveryReply(cMessage *msg);
+
+    /**
+     * A method to handle received network packet.
+     */
+    virtual void handleNetworkPacket(cMessage *msg);
 
     /**
      * A method to forward message through specified out gate.

@@ -14,7 +14,7 @@
 // 
 
 //
-// TODO generated message class
+// Neighbour Discovery Packet
 //
 message DiscoveryMessage {
         short sourceID;

@@ -13,22 +13,19 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package routing.base;
+package routing.simulations;
+import routing.e01random.NodeRandom;
 
-//
-// Covers basic functionalities of a node.
-// Behaviours on routing method should be covered in subclasses.
-// @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
-//
-simple NodeBase
+network StraightLine
 {
     parameters:
-        string identity = default("id");
-        bool logVerbose = default(false);
-        int senderNodeID;
-        int destinationNodeID;
-        @display("i=misc/node2");
+        int n = default(2); //Number of nodes
         
-    gates:
-        inout gate[];
+    submodules:
+        node[n]: NodeRandom;
+        
+    connections:
+        for i=0..n-2{
+        	node[i].gate++ <--> node[i+1].gate++;
+        }
 }
