@@ -14,8 +14,7 @@
 // 
 
 package routing.simulations;
-import routing.base.INode;
-import routing.e01random.NodeRandom;
+import routing.base.*;
 
 network StraightLine
 {

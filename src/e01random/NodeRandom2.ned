@@ -24,8 +24,8 @@ import routing.base.*;
 // However, this implementation will not send back packet.
 // It means the incoming gate is excluded from the random gate selection.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+// @see NodeRandom
 //
-
 simple NodeRandom2 extends NodeBase
 { 
     @class(NodeRandom2);

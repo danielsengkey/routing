@@ -16,17 +16,18 @@
 package routing.simulations;
 import routing.base.*;
 
-network Ring
+network Grid
 {
     parameters:
-        int n = default(3); //Number of nodes
-        
+        double height @prompt("Number of rows") = default(9);
+        double width @prompt("Number of columns") = default(7);
+
     submodules:
-        node[n]: <> like INode;
+        node[height*width]: <> like INode;
         
     connections:
-        for i=0..n-2{
-        	node[i].gate++ <--> node[i+1].gate++;
+        for i=0..height-1, for j=0..width-1 {
+            node[i*width+j].gate++ <--> node[(i+1)*width+j].gate++ if i!=height-1;
+            node[i*width+j].gate++ <--> node[(i*width+j)+1].gate++ if j!=width-1;
         }
-        node[n-1].gate++ <--> node[0].gate++;
 }

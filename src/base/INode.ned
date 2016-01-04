@@ -16,7 +16,11 @@
 package routing.base;
 
 //
-// TODO documentation
+// Module interface for routing node.
+// This aims to simplify the node switching,
+// from one method to other method implementation.
+// @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+// @see NodeBase
 //
 moduleinterface INode
 {

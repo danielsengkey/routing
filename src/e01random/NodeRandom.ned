@@ -22,8 +22,7 @@ import routing.base.*;
 // Node will select random gate using uniform
 // distribution to forward NetworkPacket.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
-//
-
+// 
 simple NodeRandom extends NodeBase
 { 
     @class(NodeRandom);
