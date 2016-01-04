@@ -1,0 +1,2 @@
+This directory contains the implementation of routing with flooding method.
+Node will forward received packet on all interfaces (gates) except the incoming gate.

@@ -14,7 +14,7 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 #USERIF_LIBS = $(TKENV_LIBS)
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I. -Ibase -Ie01random
+INCLUDE_PATH = -I. -Ibase -Ie01random -Ie02flooding
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -28,7 +28,13 @@ PROJECTRELATIVE_PATH = src
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS = $O/base/NodeBase.o $O/e01random/NodeRandom2.o $O/e01random/NodeRandom.o $O/base/discovery_m.o $O/base/Packet_m.o
+OBJS = \
+    $O/base/NodeBase.o \
+    $O/e01random/NodeRandom2.o \
+    $O/e01random/NodeRandom.o \
+    $O/e02flooding/NodeFlooding.o \
+    $O/base/discovery_m.o \
+    $O/base/Packet_m.o
 
 # Message files
 MSGFILES = \
@@ -109,13 +115,14 @@ clean:
 	$(Q)-rm -f ./*_m.cc ./*_m.h
 	$(Q)-rm -f base/*_m.cc base/*_m.h
 	$(Q)-rm -f e01random/*_m.cc e01random/*_m.h
+	$(Q)-rm -f e02flooding/*_m.cc e02flooding/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/base/NodeBase.o: base/NodeBase.cc \
@@ -136,4 +143,9 @@ $O/e01random/NodeRandom2.o: e01random/NodeRandom2.cc \
 	base/Packet_m.h \
 	base/discovery_m.h \
 	e01random/NodeRandom2.h
+$O/e02flooding/NodeFlooding.o: e02flooding/NodeFlooding.cc \
+	base/NodeBase.h \
+	base/Packet_m.h \
+	base/discovery_m.h \
+	e02flooding/NodeFlooding.h
 
