@@ -28,7 +28,7 @@ PROJECTRELATIVE_PATH = src
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
-OBJS = $O/base/NodeBase.o $O/e01random/NodeRandom.o $O/base/discovery_m.o $O/base/Packet_m.o
+OBJS = $O/base/NodeBase.o $O/e01random/NodeRandom2.o $O/e01random/NodeRandom.o $O/base/discovery_m.o $O/base/Packet_m.o
 
 # Message files
 MSGFILES = \
@@ -131,4 +131,9 @@ $O/e01random/NodeRandom.o: e01random/NodeRandom.cc \
 	base/Packet_m.h \
 	base/discovery_m.h \
 	e01random/NodeRandom.h
+$O/e01random/NodeRandom2.o: e01random/NodeRandom2.cc \
+	base/NodeBase.h \
+	base/Packet_m.h \
+	base/discovery_m.h \
+	e01random/NodeRandom2.h
 

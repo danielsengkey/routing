@@ -20,13 +20,22 @@ package routing.base;
 // Behaviours on routing method should be covered in subclasses.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
 //
-simple NodeBase
+simple NodeBase like INode
 {
     parameters:
         string identity = default("id");
         bool logVerbose = default(false);
         int senderNodeID;
         int destinationNodeID;
+        
+        // Signals from C++ module
+        @signal[HopCount](type="long");
+        @signal[NumReceivedPacket](type="long");
+        
+        // Statistics recording
+        @statistic[hopCount](title="Packet Hop Count"; record=last; source="HopCount";);
+        @statistic[receivedPacket](title="Number of Received Packet"; record=last; source="NumReceivedPacket";);
+        
         @display("i=misc/node2");
         
     gates:

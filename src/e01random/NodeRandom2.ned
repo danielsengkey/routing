@@ -21,10 +21,12 @@ import routing.base.*;
 // Simple module implementing random routing.
 // Node will select random gate using uniform
 // distribution to forward NetworkPacket.
+// However, this implementation will not send back packet.
+// It means the incoming gate is excluded from the random gate selection.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
 //
 
-simple NodeRandom extends NodeBase
+simple NodeRandom2 extends NodeBase
 { 
-    @class(NodeRandom);
+    @class(NodeRandom2);
 }

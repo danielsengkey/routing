@@ -33,14 +33,25 @@ void NodeBase::initialize()
     )
         error("Identity must be set as \"index\" or \"id\" (CASE SENSITIVE), instead of " + *identityValue);
 
+    // Read passed parameters
     myId                = par("identity").stringValue()=="index"?getIndex():getId();
     senderNodeID        = par("senderNodeID").doubleValue();
     destinationNodeID   = par("destinationNodeID").doubleValue();
 
+    // Gates
     inGateName  = "gate$i";
     outGateName = "gate$o";
     totalGate   = gateSize(inGateName);
 
+    // Statistics
+    signalPacketHopCount    = registerSignal("HopCount");
+    signalNumReceivedPacket = registerSignal("NumReceivedPacket");
+
+    // Initialize number of received packet with 0.
+    numReceivedPacket = 0;
+
+    // Reading the network to get the number of nodes.
+    // Number of nodes then used to initialize respective variable.
     cTopology *topo = new cTopology("topo");
     std::vector<std::string> nedTypes;
     nedTypes.push_back(getNedTypeName());
@@ -73,29 +84,25 @@ void NodeBase::handleMessage(cMessage *msg)
 void NodeBase::handleDiscoveryMessage(cMessage *msg)
 {
     // TODO Function implemented in subclass.
+    // In the base node the message just deleted.
+
+    delete msg;
 }
 
 void NodeBase::handleDiscoveryReply(cMessage *msg)
 {
     // TODO Function implemented in subclass.
+    // In the base node the message just deleted.
+
+    delete msg;
 }
 
 void NodeBase::handleNetworkPacket(cMessage *msg)
 {
-    NetworkPacket *receivedNP = check_and_cast<NetworkPacket *>(msg);
+    // TODO Function implemented in subclass.
+    // In the base node the message just deleted.
 
-    if(receivedNP->getDestinationID()==myId)
-    {
-        EV << "Received " << receivedNP->getName() << " from " << receivedNP-> getSourceID() << endl;
-        EV << "Hops: ";
-        for(int i=0; i<receivedNP->getHopsArraySize(); i++)
-        {
-            EV << receivedNP->getHops(i) << " ";
-        }
-        EV << endl;
-        delete receivedNP;
-    }
-    // TODO Packet forwarding method.
+    delete msg;
 }
 
 DiscoveryMessage* NodeBase::prepareMessage(int messageKind, int destinationId)

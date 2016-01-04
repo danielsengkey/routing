@@ -13,18 +13,22 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package routing.e01random;
+package routing.simulations;
+import routing.base.INode;
+import routing.e01random.NodeRandom;
 
-import routing.base.*;
+network Grid
+{
+    parameters:
+        double height @prompt("Number of rows") = default(9);
+        double width @prompt("Number of columns") = default(7);
 
-//
-// Simple module implementing random routing.
-// Node will select random gate using uniform
-// distribution to forward NetworkPacket.
-// @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
-//
-
-simple NodeRandom extends NodeBase
-{ 
-    @class(NodeRandom);
+    submodules:
+        node[height*width]: <> like INode;
+        
+    connections allowunconnected:
+        for i=0..height-1, for j=0..width-1 {
+            node[i*width+j].gate++ <--> node[(i+1)*width+j].gate++ if i!=height-1;
+            node[i*width+j].gate++ <--> node[(i*width+j)+1].gate++ if j!=width-1;
+        }
 }

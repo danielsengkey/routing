@@ -1,0 +1,4 @@
+This directory contains the base for the other nodes.
+The NodeBase has basic functionalities of a node.
+However the message handler should be redefined in subclasses.
+Subclasses implement different routing functions/method.

@@ -14,15 +14,16 @@
 // 
 
 package routing.simulations;
+import routing.base.INode;
 import routing.e01random.NodeRandom;
 
 network StraightLine
 {
     parameters:
-        int n = default(2); //Number of nodes
+        int n = default(3); //Number of nodes
         
     submodules:
-        node[n]: NodeRandom;
+        node[n]: <> like INode;
         
     connections:
         for i=0..n-2{

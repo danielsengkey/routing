@@ -13,11 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include <e01random/NodeRandom.h>
+#include <e01random/NodeRandom2.h>
 
-Define_Module(NodeRandom);
+Define_Module(NodeRandom2);
 
-void NodeRandom::initialize()
+void NodeRandom2::initialize()
 {
     logVerbose  = par("logVerbose").boolValue();
 
@@ -60,7 +60,7 @@ void NodeRandom::initialize()
 }
 
 
-void NodeRandom::handleNetworkPacket(cMessage *msg)
+void NodeRandom2::handleNetworkPacket(cMessage *msg)
 {
     NetworkPacket *receivedNP = check_and_cast<NetworkPacket *>(msg);
 
@@ -88,6 +88,11 @@ void NodeRandom::handleNetworkPacket(cMessage *msg)
 
     } else {
         if(receivedNP->getHopCount()<numberOfNodes) { //Keep forwarding while the hop count still less than number of nodes
+
+            int selectedOutGate;
+
+//            EV << "Received " << receivedNP->getName() << " incoming gate index " << receivedNP->getArrivalGate()->getIndex() << endl;
+
             printModuleLog("Adding hop ID into hops.");
             receivedNP->setHops(receivedNP->getHopCount(), myId);
 
@@ -96,7 +101,11 @@ void NodeRandom::handleNetworkPacket(cMessage *msg)
 
             printModuleLog("Selecting random gate for forwarding.");
 
-            int selectedOutGate = intuniform(0, totalGate-1);
+            // Randomly select output gate, repeat if the input gate is selected.
+            do {
+                selectedOutGate = intuniform(0, totalGate-1);
+            }while (selectedOutGate==receivedNP->getArrivalGate()->getIndex());
+
             forwardMessage(receivedNP, selectedOutGate);
         } else {
             EV << "Message hop limit reached! Ending simulation!" << endl;

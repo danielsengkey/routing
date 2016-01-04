@@ -58,7 +58,34 @@ class NodeBase : public cSimpleModule
      */
     int destinationNodeID;
 
+    /**
+     * The NED implementation should hold the choice
+     * of what value will be used as identifier.
+     * This variable stores the choice.
+     */
     const char *identityValue;
+
+    // Collecting stats using signals.
+
+    /*
+     * Signal for packet hop count.
+     * The information source is the hop count field
+     * of the received packet.
+     */
+    simsignal_t signalPacketHopCount;
+
+    /*
+     * If a node receive a packet not destined for it then it will forward the packet.
+     * This variable stores how much packet is received by a node,
+     * either it will be forwarded or this node is the receiver,
+     * which means this variable value is 1.
+     */
+    int numReceivedPacket;
+
+    /*
+     * Signal for recording number of received packet.
+     */
+    simsignal_t signalNumReceivedPacket;
 
     /**
      * This method will print verbose messages if the logVerbose is true.
@@ -72,7 +99,11 @@ class NodeBase : public cSimpleModule
     /** Received Discovery Message. */
     DiscoveryMessage receivedDiscovery;
 
-    /** Number of nodes in the network */
+    /**
+     * Number of nodes in the network, also used as maximum hop count.
+     * Instead of ttl field in the message, this routing example uses
+     * hop count limitation in similar fashion with a firewall e.g. Linux iptables.
+     */
     int numberOfNodes;
 
     /** Enumerated message kind for easier identification. */
