@@ -35,8 +35,10 @@ class NodeRandom2: public NodeBase {
      */
     virtual void handleNetworkPacket(cMessage *msg);
 
-    virtual void initialize();
-
+    /**
+     * Redefine the specific initialization.
+     */
+    virtual void specificInitialization();
 };
 
 #endif /* NODERANDOM_H_ */

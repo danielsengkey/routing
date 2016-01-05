@@ -67,14 +67,14 @@ class NodeBase : public cSimpleModule
 
     // Collecting stats using signals.
 
-    /*
+    /**
      * Signal for packet hop count.
      * The information source is the hop count field
      * of the received packet.
      */
     simsignal_t signalPacketHopCount;
 
-    /*
+    /**
      * If a node receive a packet not destined for it then it will forward the packet.
      * This variable stores how much packet is received by a node,
      * either it will be forwarded or this node is the receiver,
@@ -82,10 +82,20 @@ class NodeBase : public cSimpleModule
      */
     int numReceivedPacket;
 
-    /*
+    /**
      * Signal for recording number of received packet.
      */
     simsignal_t signalNumReceivedPacket;
+
+    /**
+     * Dropped packets counter.
+     */
+    int droppedPackets;
+
+    /**
+     * Signal for dropped packets counter.
+     */
+    simsignal_t signalDroppedPackets;
 
     /**
      * This method will print verbose messages if the logVerbose is true.
@@ -143,6 +153,15 @@ class NodeBase : public cSimpleModule
 
     /** Module initialization. */
     virtual void initialize();
+
+    /**
+     * Pure virtual method for specific implementation of routing technique.
+     * This method should be implemented in subclasses initialize() method.
+     * The existence of this method is to avoid redundant lines of initialization
+     * in subclasses since all subclasses containing specific routing technique
+     * implementation have very similar module initialization.
+     */
+    virtual void specificInitialization();
 
     /**
      * Basic message handler.

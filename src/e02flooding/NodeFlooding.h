@@ -38,14 +38,16 @@ protected:
     /* Signal to record numForwardedPackets */
     simsignal_t signalNumForwardedPackets;
 
-    /* Override initialization method. */
-    virtual void initialize();
-
     /* Override NetworkPacket handler. */
     virtual void handleNetworkPacket(cMessage *msg);
 
     /* Override selectiveBroadcast method by adding forwarding counter. */
     virtual void selectiveBroadcast(cMessage *msg, int notViaThisGateIndex);
+
+    /**
+     * Redefine the specific initialization.
+     */
+    virtual void specificInitialization();
 };
 
 #endif /* NODEFLOODING_H_ */

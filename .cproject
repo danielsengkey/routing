@@ -44,9 +44,25 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
+					<folderInfo id="org.omnetpp.cdt.gnu.config.debug.439116024.499485391" name="/" resourcePath="src/e02flooding">
+						<toolChain id="org.omnetpp.cdt.gnu.toolchain.debug.1743708688" name="GCC for OMNeT++" superClass="org.omnetpp.cdt.gnu.toolchain.debug" unusedChildren="">
+							<tool id="cdt.managedbuild.tool.gnu.archiver.base.967847170" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base.263785062"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.compiler.base.35154607" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.base.1088113162">
+								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.1273258081" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.compiler.base.896789407" name="GCC C Compiler" superClass="cdt.managedbuild.tool.gnu.c.compiler.base.257123835">
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1796286016" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.c.linker.base.211056866" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.base.41890698"/>
+							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.base.1696861786" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.base.1358688669"/>
+							<tool id="cdt.managedbuild.tool.gnu.assembler.base.1062376613" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.base.1803859167">
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.70341561" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
 					<sourceEntries>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="simulations"/>
-						<entry excluding="e02flooding" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

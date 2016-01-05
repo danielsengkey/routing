@@ -31,10 +31,12 @@ simple NodeBase like INode
         // Signals from C++ module
         @signal[HopCount](type="long");
         @signal[NumReceivedPacket](type="long");
-        
+ 		@signal[DroppedPackets](type="long");
+ 		
         // Statistics recording
         @statistic[hopCount](title="Packet Hop Count"; record=last; source="HopCount";);
         @statistic[receivedPacket](title="Number of Received Packet"; record=last; source="NumReceivedPacket";);
+        @statistic[droppedPackets](title="Packets Dropped due to Hop Limit Reached";record=last;source"DroppedPackets");
         
         @display("i=misc/node2");
         

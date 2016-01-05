@@ -17,48 +17,11 @@
 
 Define_Module(NodeRandom);
 
-void NodeRandom::initialize()
+void NodeRandom::specificInitialization()
 {
-    logVerbose  = par("logVerbose").boolValue();
-
-    /** Check if the identity parameter has valid value. */
-    identityValue = par("identity").stringValue();
-
-    if (
-            !(
-                    (strcmp(identityValue,"index")==0)
-                    ||
-                    (strcmp(identityValue,"id")==0)
-            )
-    )
-        error("Identity must be set as \"index\" or \"id\" (CASE SENSITIVE), instead of " + *identityValue);
-
-    myId                = par("identity").stringValue()=="index"?getIndex():getId();
-    senderNodeID        = par("senderNodeID").doubleValue();
-    destinationNodeID   = par("destinationNodeID").doubleValue();
-
-    inGateName  = "gate$i";
-    outGateName = "gate$o";
-    totalGate   = gateSize(inGateName);
-
-    // Statistics
-    signalPacketHopCount    = registerSignal("HopCount");
-    signalNumReceivedPacket = registerSignal("NumReceivedPacket");
-
-    // Initialize number of received packet with 0.
-    numReceivedPacket = 0;
-
-    cTopology *topo = new cTopology("topo");
-    std::vector<std::string> nedTypes;
-    nedTypes.push_back(getNedTypeName());
-    topo->extractByNedTypeName(nedTypes);
-
-    numberOfNodes = pow(topo->getNumNodes(),2)<1024?pow(topo->getNumNodes(),2):1024;
-    delete topo;
-
-    if(senderNodeID==myId) unicastSending(prepareNetworkPacket(destinationNodeID), intuniform(0, totalGate-1));
+    if(senderNodeID==myId)
+        unicastSending(prepareNetworkPacket(destinationNodeID), intuniform(0, totalGate-1));
 }
-
 
 void NodeRandom::handleNetworkPacket(cMessage *msg)
 {

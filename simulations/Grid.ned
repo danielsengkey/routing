@@ -15,6 +15,7 @@
 
 package routing.simulations;
 import routing.base.*;
+import ned.DelayChannel;
 
 network Grid
 {
@@ -22,12 +23,17 @@ network Grid
         double height @prompt("Number of rows") = default(9);
         double width @prompt("Number of columns") = default(7);
 
+    types:
+        channel C extends DelayChannel
+        {
+            delay = uniform(0.01s, 0.1s);
+        }
+
     submodules:
         node[height*width]: <> like INode;
-        
     connections:
         for i=0..height-1, for j=0..width-1 {
-            node[i*width+j].gate++ <--> node[(i+1)*width+j].gate++ if i!=height-1;
-            node[i*width+j].gate++ <--> node[(i*width+j)+1].gate++ if j!=width-1;
+            node[i*width+j].gate++ <--> C <--> node[(i+1)*width+j].gate++ if i!=height-1;
+            node[i*width+j].gate++ <--> C <--> node[(i*width+j)+1].gate++ if j!=width-1;
         }
 }

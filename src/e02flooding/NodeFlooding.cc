@@ -17,54 +17,25 @@
 
 Define_Module(NodeFlooding);
 
-void NodeFlooding::initialize()
+void NodeFlooding::specificInitialization()
 {
-    logVerbose  = par("logVerbose").boolValue();
-
-    /** Check if the identity parameter has valid value. */
-    identityValue = par("identity").stringValue();
-
-    if (
-            !(
-                    (strcmp(identityValue,"index")==0)
-                    ||
-                    (strcmp(identityValue,"id")==0)
-            )
-    )
-        error("Identity must be set as \"index\" or \"id\" (CASE SENSITIVE), instead of " + *identityValue);
-
-    // Read passed parameters
-    myId                = par("identity").stringValue()=="index"?getIndex():getId();
-    senderNodeID        = par("senderNodeID").doubleValue();
-    destinationNodeID   = par("destinationNodeID").doubleValue();
-
-    // Gates
-    inGateName  = "gate$i";
-    outGateName = "gate$o";
-    totalGate   = gateSize(inGateName);
-
-    // Statistics
-    signalPacketHopCount        = registerSignal("HopCount");
-    signalNumReceivedPacket     = registerSignal("NumReceivedPacket");
+    // Signal to record numForwardedPackets
     signalNumForwardedPackets   = registerSignal("ForwardedPackets");
-
-    // Initialize number of received packet with 0.
-    numReceivedPacket = 0;
 
     // Initialize number of forwarded packet with 0.
     numForwardedPackets = 0;
 
-    // Reading the network to get the number of nodes.
-    // Number of nodes then used to initialize respective variable.
+    // FIXME Redundant
     cTopology *topo = new cTopology("topo");
     std::vector<std::string> nedTypes;
     nedTypes.push_back(getNedTypeName());
     topo->extractByNedTypeName(nedTypes);
 
+	// Reduce hop limit. Using square of node number is very excessive in this scenario.
     numberOfNodes = topo->getNumNodes();
     delete topo;
 
-    // Instead of discovery as in NodeBase, broadcast network packet.
+    // Broadcast network packet
     if(senderNodeID==myId) broadcastMessage(prepareNetworkPacket(destinationNodeID));
 }
 
@@ -106,7 +77,7 @@ void NodeFlooding::handleNetworkPacket(cMessage *msg)
             selectiveBroadcast(receivedNP, receivedNP->getArrivalGate()->getIndex());
 
         } else {
-            EV << "Message hop limit reached! Ending simulation!" << endl;
+            EV << "Message hop limit reached! Delete message." << endl;
             if(receivedNP->getHopsArraySize()>10) EV << endl;
             for(int i=0; i<receivedNP->getHopsArraySize(); i++)
             {
@@ -118,6 +89,8 @@ void NodeFlooding::handleNetworkPacket(cMessage *msg)
             EV << endl;
             EV << "Hop count\t= " << receivedNP->getHopCount() << endl;
             EV << "MESSAGE NOT DELIVERED!!!" << endl;
+            droppedPackets++;
+            emit(signalDroppedPackets, droppedPackets);
             delete receivedNP;
         }
     }

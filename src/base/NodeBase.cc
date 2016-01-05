@@ -33,12 +33,10 @@ void NodeBase::initialize()
     )
         error("Identity must be set as \"index\" or \"id\" (CASE SENSITIVE), instead of " + *identityValue);
 
-    // Read passed parameters
     myId                = par("identity").stringValue()=="index"?getIndex():getId();
     senderNodeID        = par("senderNodeID").doubleValue();
     destinationNodeID   = par("destinationNodeID").doubleValue();
 
-    // Gates
     inGateName  = "gate$i";
     outGateName = "gate$o";
     totalGate   = gateSize(inGateName);
@@ -46,21 +44,32 @@ void NodeBase::initialize()
     // Statistics
     signalPacketHopCount    = registerSignal("HopCount");
     signalNumReceivedPacket = registerSignal("NumReceivedPacket");
+    signalDroppedPackets    = registerSignal("DroppedPackets");
 
     // Initialize number of received packet with 0.
-    numReceivedPacket = 0;
+    numReceivedPacket   = 0;
+    droppedPackets      = 0;
 
-    // Reading the network to get the number of nodes.
-    // Number of nodes then used to initialize respective variable.
     cTopology *topo = new cTopology("topo");
     std::vector<std::string> nedTypes;
     nedTypes.push_back(getNedTypeName());
     topo->extractByNedTypeName(nedTypes);
 
-    numberOfNodes = topo->getNumNodes();
+    // Maximum hops a.k.a hopLimit
+    numberOfNodes = pow(topo->getNumNodes(),2)<1024?pow(topo->getNumNodes(),2):1024;
     delete topo;
 
-    broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1));
+    // Calling specificInitialization() method.
+    specificInitialization();
+
+    // TODO Move this line to modules that use network discovery.
+ //   broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1));
+}
+
+void NodeBase::specificInitialization()
+{
+    // Do nothing here.
+    // Need to be redefined in subclasses.
 }
 
 void NodeBase::handleMessage(cMessage *msg)
@@ -127,7 +136,7 @@ DiscoveryMessage* NodeBase::prepareMessage(int messageKind, int destinationId)
 
 NetworkPacket* NodeBase::prepareNetworkPacket(int destinationId)
 {
-    EV << "Preparing Network Packet for Node " << destinationId << endl;
+    EV << "Preparing Network Packet for Node " << destinationId << "." << endl;
     NetworkPacket *networkPacket = new NetworkPacket("Network packet", NETWORK_PACKET);
     networkPacket->setSourceID(myId);
     networkPacket->setDestinationID(destinationId);
@@ -157,7 +166,7 @@ void NodeBase::forwardMessage(cMessage *msg, int outGateIndex)
 void NodeBase::broadcastMessage(cMessage *msg)
 {
     // TODO The concatenation requires special attention. Need to check documentation of concatenating const c
-    printModuleLog(*("Broadcasting message ") + msg->getName());
+    EV << "Broadcasting message " << msg->getName() << endl;
     for (int i=0; i<totalGate; i++) send(i==(totalGate-1)?msg:msg->dup(), outGateName, i);
 }
 

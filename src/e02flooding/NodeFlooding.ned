@@ -25,7 +25,11 @@ simple NodeFlooding extends NodeBase
     @class(NodeFlooding);
     
     @signal[ForwardedPackets](type="long");
- 
+ 	@signal[DroppedPackets](type="long");
+ 	
     @statistic[hopCount](title="Packet Hop Count"; record=histogram,vector; source="HopCount";);
     @statistic[forwardedPackets](title="Number of Forwarded Packets";record=last;source="ForwardedPackets");
+    @statistic[droppedPackets](title="Packets Dropped due to Hop Limit Reached";record=last;source"DroppedPackets");
+    @statistic[receivedPacket](title="Number of Received Packet"; record=last; source="NumReceivedPacket";);
+    
 }
