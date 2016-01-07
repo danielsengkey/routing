@@ -17,7 +17,6 @@
 #define __ROUTING_NODEBASE_H_
 
 #include <omnetpp.h>
-#include <discovery_m.h>
 #include <Packet_m.h>
 
 /**
@@ -103,12 +102,6 @@ class NodeBase : public cSimpleModule
      */
     void printModuleLog(std::string logMessage);
 
-    /** Neighbour Discovery message that will be sent by this node. */
-    DiscoveryMessage myDiscoveryMessage;
-
-    /** Received Discovery Message. */
-    DiscoveryMessage receivedDiscovery;
-
     /**
      * Number of nodes in the network, also used as maximum hop count.
      * Instead of ttl field in the message, this routing example uses
@@ -118,35 +111,8 @@ class NodeBase : public cSimpleModule
 
     /** Enumerated message kind for easier identification. */
     enum messageKind{
-        DISCOVERY_MESSAGE,
-        DISCOVERY_REPLY,
         NETWORK_PACKET
     };
-
-    /** A simple routing table. */
-    typedef std::map<int,int> RoutingTable;
-
-    /** The forwarding information base, instance of the routing table. */
-    RoutingTable fib;
-
-    /**
-     * A table contains cost(s) to reach the other hosts.
-     * First field is the gate and second is the gate.
-     * The node ID is the vector element defined right after.
-     * see @rib
-     */
-    typedef std::map<int,int> GateCostTable;
-
-    /**
-     * A vector contains the hosts list and the costs.
-     * The host ID is the key. Later, each field is HostCostTable instance.
-     * Let it called as Routing Information Base (RIB).
-     * There will be one RIB for each known host/node.
-     */
-    std::vector<GateCostTable> rib;
-
-    /** A method for message preparation. If a broadcast message then the destination id is -1. */
-    DiscoveryMessage *prepareMessage(int messageKind, int destinationId);
 
     /** Prepare network packet */
     NetworkPacket *prepareNetworkPacket(int destinationId);
@@ -164,27 +130,11 @@ class NodeBase : public cSimpleModule
     virtual void specificInitialization();
 
     /**
-     * Basic message handler.
-     * The implementation only contains decision based on the message kind
-     * to determine what should be done next with the message.
-     */
-    virtual void handleMessage(cMessage *msg);
-
-    /**
-     * Specific method to handle discovery message.
-     * Should be invoked from the main handleMessage().
-     * @see handleMessage()
-     * @see handleDiscoveryReply()
-     */
-    virtual void handleDiscoveryMessage(cMessage *msg);
-
-    /**
-     * Specific method to handle discovery reply message.
-     * Should be invoked from the main handleMessage().
-     * @see handleMessage()
-     * * @see handleDiscoveryMessage()
-     */
-    virtual void handleDiscoveryReply(cMessage *msg);
+      * Basic message handler.
+      * The implementation only contains decision based on the message kind
+      * to determine what should be done next with the message.
+      */
+     virtual void handleMessage(cMessage *msg);
 
     /**
      * A method to handle received network packet.
@@ -219,12 +169,6 @@ class NodeBase : public cSimpleModule
      * @see forwardMessage()
      */
     virtual void unicastSending(cMessage *msg, int outGateIndex);
-
-    /**
-     * Find the output gate with lowest cost to reach a node.
-     * This method will return an out gate index.
-     */
-    int findLowestCostGate(int node);
 };
 
 #endif

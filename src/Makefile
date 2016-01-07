@@ -29,6 +29,7 @@ O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc and .msg files
 OBJS = \
+    $O/base/NodeDiscoveryBase.o \
     $O/base/NodeBase.o \
     $O/e01random/NodeRandom2.o \
     $O/e01random/NodeRandom.o \
@@ -127,6 +128,10 @@ depend:
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/base/NodeBase.o: base/NodeBase.cc \
 	base/NodeBase.h \
+	base/Packet_m.h
+$O/base/NodeDiscoveryBase.o: base/NodeDiscoveryBase.cc \
+	base/NodeBase.h \
+	base/NodeDiscoveryBase.h \
 	base/Packet_m.h \
 	base/discovery_m.h
 $O/base/Packet_m.o: base/Packet_m.cc \
@@ -136,16 +141,13 @@ $O/base/discovery_m.o: base/discovery_m.cc \
 $O/e01random/NodeRandom.o: e01random/NodeRandom.cc \
 	base/NodeBase.h \
 	base/Packet_m.h \
-	base/discovery_m.h \
 	e01random/NodeRandom.h
 $O/e01random/NodeRandom2.o: e01random/NodeRandom2.cc \
 	base/NodeBase.h \
 	base/Packet_m.h \
-	base/discovery_m.h \
 	e01random/NodeRandom2.h
 $O/e02flooding/NodeFlooding.o: e02flooding/NodeFlooding.cc \
 	base/NodeBase.h \
 	base/Packet_m.h \
-	base/discovery_m.h \
 	e02flooding/NodeFlooding.h
 

@@ -61,9 +61,6 @@ void NodeBase::initialize()
 
     // Calling specificInitialization() method.
     specificInitialization();
-
-    // TODO Move this line to modules that use network discovery.
- //   broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1));
 }
 
 void NodeBase::specificInitialization()
@@ -75,12 +72,6 @@ void NodeBase::specificInitialization()
 void NodeBase::handleMessage(cMessage *msg)
 {
     switch (msg->getKind()) {
-        case DISCOVERY_MESSAGE:
-            handleDiscoveryMessage(msg);
-            break;
-        case DISCOVERY_REPLY:
-            handleDiscoveryReply(msg);
-            break;
         case NETWORK_PACKET:
             handleNetworkPacket(msg);
             break;
@@ -90,48 +81,12 @@ void NodeBase::handleMessage(cMessage *msg)
     }
 }
 
-void NodeBase::handleDiscoveryMessage(cMessage *msg)
-{
-    // TODO Function implemented in subclass.
-    // In the base node the message just deleted.
-
-    delete msg;
-}
-
-void NodeBase::handleDiscoveryReply(cMessage *msg)
-{
-    // TODO Function implemented in subclass.
-    // In the base node the message just deleted.
-
-    delete msg;
-}
-
 void NodeBase::handleNetworkPacket(cMessage *msg)
 {
     // TODO Function implemented in subclass.
     // In the base node the message just deleted.
 
     delete msg;
-}
-
-DiscoveryMessage* NodeBase::prepareMessage(int messageKind, int destinationId)
-{
-    DiscoveryMessage *discoveryMsg = NULL;
-
-    switch (messageKind) {
-        case DISCOVERY_MESSAGE:
-            discoveryMsg = new DiscoveryMessage("Discovery message from node " + myId, DISCOVERY_MESSAGE);
-            break;
-        case DISCOVERY_REPLY:
-            discoveryMsg = new DiscoveryMessage("Discovery reply from node " + myId, DISCOVERY_REPLY);
-            break;
-        default:
-            EV << "Unknown message kind." << endl;
-            break;
-    }
-    discoveryMsg->setSourceID(myId);
-    discoveryMsg->setDestinationID(destinationId);
-    return discoveryMsg;
 }
 
 NetworkPacket* NodeBase::prepareNetworkPacket(int destinationId)
@@ -143,18 +98,6 @@ NetworkPacket* NodeBase::prepareNetworkPacket(int destinationId)
     networkPacket->setHopsArraySize(numberOfNodes);
     networkPacket->setHopCount(0);
     return networkPacket;
-}
-
-int NodeBase::findLowestCostGate(int node)
-{
-    int gateWithLowestCost;
-    int lowestCost = 999999; // A very huge number that likely this model won't have cost that much.
-
-    for(auto it: rib[node])
-    {
-        if(it.second < lowestCost) gateWithLowestCost = it.first;
-    }
-    return gateWithLowestCost;
 }
 
 void NodeBase::forwardMessage(cMessage *msg, int outGateIndex)
