@@ -14,7 +14,7 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 #USERIF_LIBS = $(TKENV_LIBS)
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I. -Ibase -Ie01random -Ie02flooding
+INCLUDE_PATH = -I. -Ibase -Ie01random -Ie02flooding -Ie03discovery
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -34,6 +34,7 @@ OBJS = \
     $O/e01random/NodeRandom2.o \
     $O/e01random/NodeRandom.o \
     $O/e02flooding/NodeFlooding.o \
+    $O/e03discovery/NodeSimpleDiscovery.o \
     $O/base/discovery_m.o \
     $O/base/Packet_m.o
 
@@ -117,13 +118,14 @@ clean:
 	$(Q)-rm -f base/*_m.cc base/*_m.h
 	$(Q)-rm -f e01random/*_m.cc e01random/*_m.h
 	$(Q)-rm -f e02flooding/*_m.cc e02flooding/*_m.h
+	$(Q)-rm -f e03discovery/*_m.cc e03discovery/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc e03discovery/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/base/NodeBase.o: base/NodeBase.cc \
@@ -150,4 +152,10 @@ $O/e02flooding/NodeFlooding.o: e02flooding/NodeFlooding.cc \
 	base/NodeBase.h \
 	base/Packet_m.h \
 	e02flooding/NodeFlooding.h
+$O/e03discovery/NodeSimpleDiscovery.o: e03discovery/NodeSimpleDiscovery.cc \
+	base/NodeBase.h \
+	base/NodeDiscoveryBase.h \
+	base/Packet_m.h \
+	base/discovery_m.h \
+	e03discovery/NodeSimpleDiscovery.h
 

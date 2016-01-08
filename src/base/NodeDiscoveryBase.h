@@ -30,6 +30,24 @@ class NodeDiscoveryBase : public NodeBase
 {
   protected:
 
+    /**
+     * Hop limit or time-to-live of a neighbour discovery packet.
+     * Should be set within prepareMessage().
+     */
+    int ttlNeighbourDiscovery;
+
+    /** Counter for the number of received neighbour discovery packet. */
+    int rcvdND;
+
+    /** Counter for the number of identically (duplicated) received neighbour discovery packet. */
+    int rcvdNDdup;
+
+    /** Signal for rcvdND. */
+    simsignal_t signalRcvdND;
+
+    /** Signal for rcvdNDdup. */
+    simsignal_t signalRcvdNDdup;
+
     /** Neighbour Discovery message that will be sent by this node. */
     DiscoveryMessage myDiscoveryMessage;
 
@@ -65,8 +83,8 @@ class NodeDiscoveryBase : public NodeBase
      */
     std::vector<GateCostTable> rib;
 
-    /** A method for message preparation. If a broadcast message then the destination id is -1. */
-    DiscoveryMessage *prepareMessage(int messageKind, int destinationId);
+    /** A method for discovery message preparation. If a broadcast message then the destination id is -1. */
+    DiscoveryMessage *prepareMessage(int messageKind, int destinationId, int ttl);
 
     /** Override to declare specific initilaization related with this node/ */
     virtual void specificInitialization();
@@ -99,6 +117,14 @@ class NodeDiscoveryBase : public NodeBase
       * This method will return an out gate index.
       */
      int findLowestCostGate(int node);
+
+     /** A method to print fib. @see fib */
+     virtual void printFIB();
+
+     /**
+      * Finalize
+      */
+     virtual void finish();
 };
 
 #endif

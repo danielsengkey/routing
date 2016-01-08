@@ -13,13 +13,27 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-//
-// Neighbour Discovery Packet
-// The ttl processing is different from ones in NetworkPacket.
-// The ttl processed by decreasing it and node will drop it if already reached 0.
-//
-message DiscoveryMessage {
-        short sourceID;
-        short destinationID;
-        short ttl;
-}
+#ifndef __ROUTING_NODESIMPLEDISCOVERY_H_
+#define __ROUTING_NODESIMPLEDISCOVERY_H_
+
+#include <omnetpp.h>
+#include <base/NodeDiscoveryBase.h>
+
+/**
+ * Simple implementation of neighbour discovery protocol.
+ * Send a neighbour discovery packet then wait for the reply.
+ * Upon receiving a reply, then add the replier and the incoming gate
+ * to the routing table.
+ * @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+ * @see NodeDiscoveryBase
+ * @see NodeBase
+ */
+class NodeSimpleDiscovery : public NodeDiscoveryBase
+{
+  protected:
+    virtual void handleDiscoveryMessage(cMessage * msg);
+
+    virtual void handleDiscoveryReply(cMessage *msg);
+};
+
+#endif

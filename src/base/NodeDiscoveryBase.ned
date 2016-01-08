@@ -19,7 +19,21 @@ package routing.base;
 // Contains basic functionalities of node that uses network discovery.
 // Specific functions should be implemented at subclasses.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+// @see NodeBase
 //
 simple NodeDiscoveryBase extends NodeBase
 {
+    
+    parameters:
+    	@class(NodeDiscoveryBase);
+        // TTL or hop limit of the neighbour discovery.
+        // This should prevent the network flooded by 
+        // unneeded discovery.
+        int discoveryTTL = default(1);
+        
+        @signal[receivedND](type="long");
+        @signal[receivedNDdup](type="long");
+        
+        @statistic[receivedND](title="Number of Received Neighbour Discovery Message";record=last);
+        @statistic[receivedNDdup](title="Number of Received Duplicated Neighbour Discovery Message";record=last);
 }

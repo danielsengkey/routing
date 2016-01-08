@@ -19,7 +19,15 @@ Define_Module(NodeDiscoveryBase);
 
 void NodeDiscoveryBase::specificInitialization()
 {
-    broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1));
+    rcvdND      = 0;
+    rcvdNDdup   = 0;
+
+    signalRcvdND    = registerSignal("receivedND");
+    signalRcvdNDdup = registerSignal("receivedNDdup");
+
+    ttlNeighbourDiscovery = par("discoveryTTL").longValue();
+
+    broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1, ttlNeighbourDiscovery));
 }
 
 void NodeDiscoveryBase::handleMessage(cMessage *msg)
@@ -57,16 +65,16 @@ void NodeDiscoveryBase::handleDiscoveryReply(cMessage *msg)
 }
 
 
-DiscoveryMessage* NodeDiscoveryBase::prepareMessage(int messageKind, int destinationId)
+DiscoveryMessage* NodeDiscoveryBase::prepareMessage(int messageKind, int destinationId, int ttl)
 {
     DiscoveryMessage *discoveryMsg = NULL;
 
     switch (messageKind) {
         case DISCOVERY_MESSAGE:
-            discoveryMsg = new DiscoveryMessage("Discovery message from node " + myId, DISCOVERY_MESSAGE);
+            discoveryMsg = new DiscoveryMessage("Discovery Message", DISCOVERY_MESSAGE);
             break;
         case DISCOVERY_REPLY:
-            discoveryMsg = new DiscoveryMessage("Discovery reply from node " + myId, DISCOVERY_REPLY);
+            discoveryMsg = new DiscoveryMessage("Discovery Reply", DISCOVERY_REPLY);
             break;
         default:
             EV << "Unknown message kind." << endl;
@@ -74,6 +82,7 @@ DiscoveryMessage* NodeDiscoveryBase::prepareMessage(int messageKind, int destina
     }
     discoveryMsg->setSourceID(myId);
     discoveryMsg->setDestinationID(destinationId);
+    discoveryMsg->setTtl(ttl);
     return discoveryMsg;
 }
 
@@ -87,4 +96,22 @@ int NodeDiscoveryBase::findLowestCostGate(int node)
         if(it.second < lowestCost) gateWithLowestCost = it.first;
     }
     return gateWithLowestCost;
+}
+
+void NodeDiscoveryBase::printFIB()
+{
+    for(auto it : fib)
+    {
+        EV << "Node " << it.first << " is reachable via gate " << it.second << "." << endl;
+    }
+}
+
+void NodeDiscoveryBase::finish()
+{
+    // Emit signals for stats recording.
+    emit(signalRcvdND, rcvdND);
+    emit(signalRcvdNDdup, rcvdNDdup);
+
+    // Print the fib
+    if(logVerbose) printFIB();
 }

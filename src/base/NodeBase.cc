@@ -111,6 +111,7 @@ void NodeBase::broadcastMessage(cMessage *msg)
     // TODO The concatenation requires special attention. Need to check documentation of concatenating const c
     EV << "Broadcasting message " << msg->getName() << endl;
     for (int i=0; i<totalGate; i++) send(i==(totalGate-1)?msg:msg->dup(), outGateName, i);
+    if(!msg->isScheduled()) delete msg;
 }
 
 void NodeBase::selectiveBroadcast(cMessage *msg, int notViaThisGateIndex)
@@ -120,6 +121,7 @@ void NodeBase::selectiveBroadcast(cMessage *msg, int notViaThisGateIndex)
             if(i==notViaThisGateIndex) continue;
             send(i==(totalGate-1)?msg:msg->dup(), outGateName, i);
         }
+    if(!msg->isScheduled()) delete msg;
 }
 
 void NodeBase::unicastSending(cMessage *msg, int outGateIndex)

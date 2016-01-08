@@ -13,13 +13,19 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
+package routing.e03discovery;
+import routing.base.*;
+
 //
-// Neighbour Discovery Packet
-// The ttl processing is different from ones in NetworkPacket.
-// The ttl processed by decreasing it and node will drop it if already reached 0.
-//
-message DiscoveryMessage {
-        short sourceID;
-        short destinationID;
-        short ttl;
+// Simple implementation of Neighbour Discovery protocol
+// Node sends Neighbour Discovery, the receiver then will reply with
+// Discovery Reply packet. Discovered node will be added to the neighbour table.
+// @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
+// @see NodeDiscoveryBase
+// @see NodeBase
+// @see Discovery
+
+simple NodeSimpleDiscovery extends NodeDiscoveryBase
+{
+    @class(NodeSimpleDiscovery);
 }
