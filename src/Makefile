@@ -35,6 +35,7 @@ OBJS = \
     $O/e01random/NodeRandom.o \
     $O/e02flooding/NodeFlooding.o \
     $O/e03discovery/NodeSimpleDiscovery.o \
+    $O/e03discovery/NodeSimpleDiscovery2.o \
     $O/base/discovery_m.o \
     $O/base/Packet_m.o
 
@@ -158,4 +159,10 @@ $O/e03discovery/NodeSimpleDiscovery.o: e03discovery/NodeSimpleDiscovery.cc \
 	base/Packet_m.h \
 	base/discovery_m.h \
 	e03discovery/NodeSimpleDiscovery.h
+$O/e03discovery/NodeSimpleDiscovery2.o: e03discovery/NodeSimpleDiscovery2.cc \
+	base/NodeBase.h \
+	base/NodeDiscoveryBase.h \
+	base/Packet_m.h \
+	base/discovery_m.h \
+	e03discovery/NodeSimpleDiscovery2.h
 

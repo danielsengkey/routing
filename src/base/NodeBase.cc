@@ -50,15 +50,6 @@ void NodeBase::initialize()
     numReceivedPacket   = 0;
     droppedPackets      = 0;
 
-    cTopology *topo = new cTopology("topo");
-    std::vector<std::string> nedTypes;
-    nedTypes.push_back(getNedTypeName());
-    topo->extractByNedTypeName(nedTypes);
-
-    // Maximum hops a.k.a hopLimit
-    numberOfNodes = pow(topo->getNumNodes(),2)<1024?pow(topo->getNumNodes(),2):1024;
-    delete topo;
-
     // Calling specificInitialization() method.
     specificInitialization();
 }
@@ -67,6 +58,20 @@ void NodeBase::specificInitialization()
 {
     // Do nothing here.
     // Need to be redefined in subclasses.
+}
+
+int NodeBase::getNumberOfNodes()
+{
+    int n;
+
+    cTopology *topo = new cTopology("topo");
+    std::vector<std::string> nedTypes;
+    nedTypes.push_back(getNedTypeName());
+    topo->extractByNedTypeName(nedTypes);
+    n = topo->getNumNodes();
+
+    delete topo;
+    return n;
 }
 
 void NodeBase::handleMessage(cMessage *msg)

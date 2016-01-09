@@ -20,12 +20,17 @@ import routing.base.*;
 // Simple implementation of Neighbour Discovery protocol
 // Node sends Neighbour Discovery, the receiver then will reply with
 // Discovery Reply packet. Discovered node will be added to the neighbour table.
+// This module only implemented neighbour discovery  of nodes in the same link.
+// Therefore the ttl of the neighbour discovery message is 0, which means
+// it won't be forwarded.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
 // @see NodeDiscoveryBase
 // @see NodeBase
-// @see Discovery
-
+// @see DiscoveryMessage
+//
 simple NodeSimpleDiscovery extends NodeDiscoveryBase
-{
-    @class(NodeSimpleDiscovery);
+{  
+    parameters:
+        @class(NodeSimpleDiscovery);
+        discoveryTTL = 0;
 }

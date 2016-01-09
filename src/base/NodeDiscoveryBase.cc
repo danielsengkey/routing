@@ -98,11 +98,23 @@ int NodeDiscoveryBase::findLowestCostGate(int node)
     return gateWithLowestCost;
 }
 
+int NodeDiscoveryBase::getOutGate(int node)
+{
+    int outGate;
+    if(fib.find(node)==fib.end())
+    {
+        outGate = -1;
+    } else {
+        outGate = fib[node];
+    }
+    return outGate;
+}
+
 void NodeDiscoveryBase::printFIB()
 {
     for(auto it : fib)
     {
-        EV << "Node " << it.first << " is reachable via gate " << it.second << "." << endl;
+        EV << "[" << myId << "] Node " << it.first << " is reachable via gate " << it.second << "." << endl;
     }
 }
 

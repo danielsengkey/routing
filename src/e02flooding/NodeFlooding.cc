@@ -25,15 +25,7 @@ void NodeFlooding::specificInitialization()
     // Initialize number of forwarded packet with 0.
     numForwardedPackets = 0;
 
-    // FIXME Redundant
-    cTopology *topo = new cTopology("topo");
-    std::vector<std::string> nedTypes;
-    nedTypes.push_back(getNedTypeName());
-    topo->extractByNedTypeName(nedTypes);
-
-	// Reduce hop limit. Using square of node number is very excessive in this scenario.
-    numberOfNodes = topo->getNumNodes();
-    delete topo;
+    numberOfNodes = getNumberOfNodes();
 
     // Broadcast network packet
     if(senderNodeID==myId) broadcastMessage(prepareNetworkPacket(destinationNodeID));

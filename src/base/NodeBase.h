@@ -111,6 +111,8 @@ class NodeBase : public cSimpleModule
 
     /** Enumerated message kind for easier identification. */
     enum messageKind{
+        DISCOVERY_MESSAGE,
+        DISCOVERY_REPLY,
         NETWORK_PACKET
     };
 
@@ -169,6 +171,11 @@ class NodeBase : public cSimpleModule
      * @see forwardMessage()
      */
     virtual void unicastSending(cMessage *msg, int outGateIndex);
+
+    /**
+     * Get the number of nodes in the network.
+     */
+    virtual int getNumberOfNodes();
 };
 
 #endif

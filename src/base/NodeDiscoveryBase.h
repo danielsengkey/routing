@@ -54,13 +54,6 @@ class NodeDiscoveryBase : public NodeBase
     /** Received Discovery Message. */
     DiscoveryMessage receivedDiscovery;
 
-    /** Redefine the messageKind with network discovery messages */
-    enum messageKind{
-            DISCOVERY_MESSAGE,
-            DISCOVERY_REPLY,
-            NETWORK_PACKET
-        };
-
     /** A simple routing table. */
     typedef std::map<int,int> RoutingTable;
 
@@ -120,6 +113,10 @@ class NodeDiscoveryBase : public NodeBase
 
      /** A method to print fib. @see fib */
      virtual void printFIB();
+
+
+     /** Check the routing table to find a node and output gate to reach it. */
+     virtual int getOutGate(int node);
 
      /**
       * Finalize

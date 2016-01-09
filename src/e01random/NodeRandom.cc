@@ -19,6 +19,9 @@ Define_Module(NodeRandom);
 
 void NodeRandom::specificInitialization()
 {
+    // Maximum hops a.k.a hopLimit
+    numberOfNodes = pow(getNumberOfNodes(),2)<1024?pow(getNumberOfNodes(),2):1024;
+
     if(senderNodeID==myId)
         unicastSending(prepareNetworkPacket(destinationNodeID), intuniform(0, totalGate-1));
 }
