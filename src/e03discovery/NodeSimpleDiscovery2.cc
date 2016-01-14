@@ -19,7 +19,7 @@ Define_Module(NodeSimpleDiscovery2);
 
 void NodeSimpleDiscovery2::specificInitialization()
 {
-    ttlNeighbourDiscovery = getNumberOfNodes();
+    ttlNeighbourDiscovery = getNumberOfNodes()-1;
 
     rcvdND      = 0;
     rcvdNDdup   = 0;
@@ -144,4 +144,6 @@ void NodeSimpleDiscovery2::finish()
 
     // Print size of fib
     EV << "[" << myId << "] FIB size " << fib.size() << endl;
+    EV << "[" << myId << "] nodes in FIB compared to all nodes in network (minus me of course): "
+            << fib.size() << "/" << (getNumberOfNodes()-1) << endl;
 }

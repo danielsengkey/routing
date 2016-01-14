@@ -36,6 +36,7 @@ OBJS = \
     $O/e02flooding/NodeFlooding.o \
     $O/e03discovery/NodeSimpleDiscovery.o \
     $O/e03discovery/NodeSimpleDiscovery2.o \
+    $O/e03discovery/NodeSimpleDiscovery2ext.o \
     $O/base/discovery_m.o \
     $O/base/Packet_m.o
 
@@ -165,4 +166,11 @@ $O/e03discovery/NodeSimpleDiscovery2.o: e03discovery/NodeSimpleDiscovery2.cc \
 	base/Packet_m.h \
 	base/discovery_m.h \
 	e03discovery/NodeSimpleDiscovery2.h
+$O/e03discovery/NodeSimpleDiscovery2ext.o: e03discovery/NodeSimpleDiscovery2ext.cc \
+	base/NodeBase.h \
+	base/NodeDiscoveryBase.h \
+	base/Packet_m.h \
+	base/discovery_m.h \
+	e03discovery/NodeSimpleDiscovery2.h \
+	e03discovery/NodeSimpleDiscovery2ext.h
 

@@ -20,7 +20,7 @@ import ned.DelayChannel;
 
 channel C extends DelayChannel
 {
-        delay = 0s;//uniform(0.01s, 0.1s);
+        delay = uniform(0.01s, 0.1s);
 }
 
 network Grid
