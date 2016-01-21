@@ -60,22 +60,6 @@ class NodeDiscoveryBase : public NodeBase
     /** The forwarding information base, instance of the routing table. */
     RoutingTable fib;
 
-    /**
-     * A table contains cost(s) to reach the other hosts.
-     * First field is the gate and second is the gate.
-     * The node ID is the vector element defined right after.
-     * see @rib
-     */
-    typedef std::map<int,int> GateCostTable;
-
-    /**
-     * A vector contains the hosts list and the costs.
-     * The host ID is the key. Later, each field is HostCostTable instance.
-     * Let it called as Routing Information Base (RIB).
-     * There will be one RIB for each known host/node.
-     */
-    std::vector<GateCostTable> rib;
-
     /** A method for discovery message preparation. If a broadcast message then the destination id is -1. */
     DiscoveryMessage *prepareMessage(int messageKind, int destinationId, int ttl);
 
@@ -104,12 +88,6 @@ class NodeDiscoveryBase : public NodeBase
       * * @see handleDiscoveryMessage()
       */
      virtual void handleDiscoveryReply(cMessage *msg);
-
-     /**
-      * Find the output gate with lowest cost to reach a node.
-      * This method will return an out gate index.
-      */
-     int findLowestCostGate(int node);
 
      /** A method to print fib. @see fib */
      virtual void printFIB();

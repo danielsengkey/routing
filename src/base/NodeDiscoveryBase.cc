@@ -27,6 +27,8 @@ void NodeDiscoveryBase::specificInitialization()
 
     ttlNeighbourDiscovery = par("discoveryTTL").longValue();
 
+    numberOfNodes = getNumberOfNodes();
+
     broadcastMessage(prepareMessage(DISCOVERY_MESSAGE, -1, ttlNeighbourDiscovery));
 }
 
@@ -84,18 +86,6 @@ DiscoveryMessage* NodeDiscoveryBase::prepareMessage(int messageKind, int destina
     discoveryMsg->setDestinationID(destinationId);
     discoveryMsg->setTtl(ttl);
     return discoveryMsg;
-}
-
-int NodeDiscoveryBase::findLowestCostGate(int node)
-{
-    int gateWithLowestCost;
-    int lowestCost = 999999; // A very huge number that likely this model won't have cost that much.
-
-    for(auto it: rib[node])
-    {
-        if(it.second < lowestCost) gateWithLowestCost = it.first;
-    }
-    return gateWithLowestCost;
 }
 
 int NodeDiscoveryBase::getOutGate(int node)

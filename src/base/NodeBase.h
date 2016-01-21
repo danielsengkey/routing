@@ -113,7 +113,8 @@ class NodeBase : public cSimpleModule
     enum messageKind{
         DISCOVERY_MESSAGE,
         DISCOVERY_REPLY,
-        NETWORK_PACKET
+        NETWORK_PACKET,
+        DISTANCE_VECTOR_MESSAGE
     };
 
     /** Prepare network packet */

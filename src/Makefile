@@ -14,7 +14,13 @@ USERIF_LIBS = $(ALL_ENV_LIBS) # that is, $(TKENV_LIBS) $(CMDENV_LIBS)
 #USERIF_LIBS = $(TKENV_LIBS)
 
 # C++ include paths (with -I)
-INCLUDE_PATH = -I. -Ibase -Ie01random -Ie02flooding -Ie03discovery
+INCLUDE_PATH = \
+    -I. \
+    -Ibase \
+    -Ie01random \
+    -Ie02flooding \
+    -Ie03discovery \
+    -Ie04dv
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -37,12 +43,15 @@ OBJS = \
     $O/e03discovery/NodeSimpleDiscovery.o \
     $O/e03discovery/NodeSimpleDiscovery2.o \
     $O/e03discovery/NodeSimpleDiscovery2ext.o \
+    $O/e04dv/NodeDistanceVector.o \
     $O/base/discovery_m.o \
+    $O/base/vector_m.o \
     $O/base/Packet_m.o
 
 # Message files
 MSGFILES = \
     base/discovery.msg \
+    base/vector.msg \
     base/Packet.msg
 
 #------------------------------------------------------------------------------
@@ -121,13 +130,14 @@ clean:
 	$(Q)-rm -f e01random/*_m.cc e01random/*_m.h
 	$(Q)-rm -f e02flooding/*_m.cc e02flooding/*_m.h
 	$(Q)-rm -f e03discovery/*_m.cc e03discovery/*_m.h
+	$(Q)-rm -f e04dv/*_m.cc e04dv/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc e03discovery/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc e03discovery/*.cc e04dv/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/base/NodeBase.o: base/NodeBase.cc \
@@ -142,6 +152,8 @@ $O/base/Packet_m.o: base/Packet_m.cc \
 	base/Packet_m.h
 $O/base/discovery_m.o: base/discovery_m.cc \
 	base/discovery_m.h
+$O/base/vector_m.o: base/vector_m.cc \
+	base/vector_m.h
 $O/e01random/NodeRandom.o: e01random/NodeRandom.cc \
 	base/NodeBase.h \
 	base/Packet_m.h \
@@ -173,4 +185,11 @@ $O/e03discovery/NodeSimpleDiscovery2ext.o: e03discovery/NodeSimpleDiscovery2ext.
 	base/discovery_m.h \
 	e03discovery/NodeSimpleDiscovery2.h \
 	e03discovery/NodeSimpleDiscovery2ext.h
+$O/e04dv/NodeDistanceVector.o: e04dv/NodeDistanceVector.cc \
+	base/NodeBase.h \
+	base/NodeDiscoveryBase.h \
+	base/Packet_m.h \
+	base/discovery_m.h \
+	base/vector_m.h \
+	e04dv/NodeDistanceVector.h
 
