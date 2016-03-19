@@ -1,0 +1,305 @@
+OMNeT++ Discrete Event Simulation  (C) 1992-2014 Andras Varga, OpenSim Ltd.
+Version: 4.6, build: 141202-f785492, edition: Academic Public License -- NOT FOR COMMERCIAL USE
+See the license for distribution terms and warranty disclaimer
+Setting up Cmdenv...
+Loading NED files from .: 2
+Loading NED files from ../src: 12
+
+Preparing for running configuration Grid, run #0...
+Scenario: $repetition=0
+Assigned runID=Grid-0-20160109-13:15:34-2203
+Setting up network `Grid'...
+Initializing...
+
+Running simulation...
+** Event #1   T=0   Elapsed: 0.000s (0m 00s)
+     Speed:     ev/sec=0   simsec/sec=0   ev/simsec=0
+     Messages:  created: 48   present: 48   in FES: 48
+** Event #1634048   T=0.956791724441   Elapsed: 10.000s (0m 10s)
+     Speed:     ev/sec=163405   simsec/sec=0.0956792   ev/simsec=1.70784e+06
+     Messages:  created: 1645947   present: 794631   in FES: 794631
+** Event #3248640   T=1.121957413088   Elapsed: 20.001s (0m 20s)
+     Speed:     ev/sec=161443   simsec/sec=0.0165149   ev/simsec=9.77559e+06
+     Messages:  created: 2324343   present: 145353   in FES: 145353
+** Event #3408871   T=1.32076182234   Elapsed: 20.635s (0m 20s)
+     Speed:     ev/sec=253128   simsec/sec=0.314067   ev/simsec=805968
+     Messages:  created: 2335161   present: 0   in FES: 0
+
+<!> No more events -- simulation ended at event #3408871, t=1.32076182234.
+
+
+Calling finish() at end of Run #0...
+[2] Node 3 is reachable via gate 1.
+[2] Node 4 is reachable via gate 1.
+[2] Node 5 is reachable via gate 1.
+[2] Node 6 is reachable via gate 0.
+[2] Node 7 is reachable via gate 0.
+[2] Node 8 is reachable via gate 0.
+[2] Node 9 is reachable via gate 0.
+[2] Node 10 is reachable via gate 0.
+[2] Node 11 is reachable via gate 0.
+[2] Node 12 is reachable via gate 0.
+[2] Node 13 is reachable via gate 0.
+[2] Node 14 is reachable via gate 0.
+[2] Node 15 is reachable via gate 0.
+[2] Node 16 is reachable via gate 0.
+[2] Node 17 is reachable via gate 0.
+[2] FIB size 15
+[2] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[3] Node 2 is reachable via gate 0.
+[3] Node 4 is reachable via gate 2.
+[3] Node 5 is reachable via gate 2.
+[3] Node 6 is reachable via gate 0.
+[3] Node 7 is reachable via gate 1.
+[3] Node 8 is reachable via gate 2.
+[3] Node 9 is reachable via gate 2.
+[3] Node 10 is reachable via gate 0.
+[3] Node 11 is reachable via gate 1.
+[3] Node 12 is reachable via gate 2.
+[3] Node 13 is reachable via gate 2.
+[3] Node 14 is reachable via gate 0.
+[3] Node 15 is reachable via gate 1.
+[3] Node 16 is reachable via gate 2.
+[3] Node 17 is reachable via gate 2.
+[3] FIB size 15
+[3] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[4] Node 2 is reachable via gate 0.
+[4] Node 3 is reachable via gate 0.
+[4] Node 5 is reachable via gate 2.
+[4] Node 6 is reachable via gate 0.
+[4] Node 7 is reachable via gate 0.
+[4] Node 8 is reachable via gate 1.
+[4] Node 9 is reachable via gate 2.
+[4] Node 10 is reachable via gate 0.
+[4] Node 11 is reachable via gate 0.
+[4] Node 12 is reachable via gate 1.
+[4] Node 13 is reachable via gate 2.
+[4] Node 14 is reachable via gate 0.
+[4] Node 15 is reachable via gate 1.
+[4] Node 16 is reachable via gate 1.
+[4] Node 17 is reachable via gate 1.
+[4] FIB size 15
+[4] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[5] Node 2 is reachable via gate 0.
+[5] Node 3 is reachable via gate 0.
+[5] Node 4 is reachable via gate 0.
+[5] Node 6 is reachable via gate 0.
+[5] Node 7 is reachable via gate 1.
+[5] Node 8 is reachable via gate 1.
+[5] Node 9 is reachable via gate 1.
+[5] Node 10 is reachable via gate 1.
+[5] Node 11 is reachable via gate 1.
+[5] Node 12 is reachable via gate 1.
+[5] Node 13 is reachable via gate 1.
+[5] Node 14 is reachable via gate 1.
+[5] Node 15 is reachable via gate 1.
+[5] Node 16 is reachable via gate 1.
+[5] Node 17 is reachable via gate 1.
+[5] FIB size 15
+[5] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[6] Node 2 is reachable via gate 0.
+[6] Node 3 is reachable via gate 2.
+[6] Node 4 is reachable via gate 2.
+[6] Node 5 is reachable via gate 2.
+[6] Node 7 is reachable via gate 2.
+[6] Node 8 is reachable via gate 2.
+[6] Node 9 is reachable via gate 2.
+[6] Node 10 is reachable via gate 1.
+[6] Node 11 is reachable via gate 1.
+[6] Node 12 is reachable via gate 2.
+[6] Node 13 is reachable via gate 2.
+[6] Node 14 is reachable via gate 1.
+[6] Node 15 is reachable via gate 1.
+[6] Node 16 is reachable via gate 1.
+[6] Node 17 is reachable via gate 1.
+[6] FIB size 15
+[6] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[7] Node 2 is reachable via gate 0.
+[7] Node 3 is reachable via gate 0.
+[7] Node 4 is reachable via gate 3.
+[7] Node 5 is reachable via gate 3.
+[7] Node 6 is reachable via gate 1.
+[7] Node 8 is reachable via gate 3.
+[7] Node 9 is reachable via gate 3.
+[7] Node 10 is reachable via gate 2.
+[7] Node 11 is reachable via gate 2.
+[7] Node 12 is reachable via gate 3.
+[7] Node 13 is reachable via gate 3.
+[7] Node 14 is reachable via gate 2.
+[7] Node 15 is reachable via gate 2.
+[7] Node 16 is reachable via gate 2.
+[7] Node 17 is reachable via gate 2.
+[7] FIB size 15
+[7] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[8] Node 2 is reachable via gate 0.
+[8] Node 3 is reachable via gate 0.
+[8] Node 4 is reachable via gate 0.
+[8] Node 5 is reachable via gate 0.
+[8] Node 6 is reachable via gate 1.
+[8] Node 7 is reachable via gate 1.
+[8] Node 9 is reachable via gate 3.
+[8] Node 10 is reachable via gate 1.
+[8] Node 11 is reachable via gate 1.
+[8] Node 12 is reachable via gate 2.
+[8] Node 13 is reachable via gate 3.
+[8] Node 14 is reachable via gate 1.
+[8] Node 15 is reachable via gate 2.
+[8] Node 16 is reachable via gate 2.
+[8] Node 17 is reachable via gate 2.
+[8] FIB size 15
+[8] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[9] Node 2 is reachable via gate 1.
+[9] Node 3 is reachable via gate 1.
+[9] Node 4 is reachable via gate 1.
+[9] Node 5 is reachable via gate 0.
+[9] Node 6 is reachable via gate 1.
+[9] Node 7 is reachable via gate 1.
+[9] Node 8 is reachable via gate 1.
+[9] Node 10 is reachable via gate 1.
+[9] Node 11 is reachable via gate 1.
+[9] Node 12 is reachable via gate 1.
+[9] Node 13 is reachable via gate 2.
+[9] Node 14 is reachable via gate 1.
+[9] Node 15 is reachable via gate 1.
+[9] Node 16 is reachable via gate 1.
+[9] Node 17 is reachable via gate 2.
+[9] FIB size 15
+[9] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[10] Node 2 is reachable via gate 0.
+[10] Node 3 is reachable via gate 2.
+[10] Node 4 is reachable via gate 2.
+[10] Node 5 is reachable via gate 2.
+[10] Node 6 is reachable via gate 0.
+[10] Node 7 is reachable via gate 2.
+[10] Node 8 is reachable via gate 2.
+[10] Node 9 is reachable via gate 2.
+[10] Node 11 is reachable via gate 2.
+[10] Node 12 is reachable via gate 2.
+[10] Node 13 is reachable via gate 2.
+[10] Node 14 is reachable via gate 1.
+[10] Node 15 is reachable via gate 2.
+[10] Node 16 is reachable via gate 2.
+[10] Node 17 is reachable via gate 2.
+[10] FIB size 15
+[10] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[11] Node 2 is reachable via gate 1.
+[11] Node 3 is reachable via gate 0.
+[11] Node 4 is reachable via gate 0.
+[11] Node 5 is reachable via gate 0.
+[11] Node 6 is reachable via gate 1.
+[11] Node 7 is reachable via gate 0.
+[11] Node 8 is reachable via gate 0.
+[11] Node 9 is reachable via gate 0.
+[11] Node 10 is reachable via gate 1.
+[11] Node 12 is reachable via gate 3.
+[11] Node 13 is reachable via gate 3.
+[11] Node 14 is reachable via gate 1.
+[11] Node 15 is reachable via gate 2.
+[11] Node 16 is reachable via gate 2.
+[11] Node 17 is reachable via gate 2.
+[11] FIB size 15
+[11] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[12] Node 2 is reachable via gate 0.
+[12] Node 3 is reachable via gate 0.
+[12] Node 4 is reachable via gate 0.
+[12] Node 5 is reachable via gate 0.
+[12] Node 6 is reachable via gate 1.
+[12] Node 7 is reachable via gate 1.
+[12] Node 8 is reachable via gate 0.
+[12] Node 9 is reachable via gate 0.
+[12] Node 10 is reachable via gate 1.
+[12] Node 11 is reachable via gate 1.
+[12] Node 13 is reachable via gate 3.
+[12] Node 14 is reachable via gate 1.
+[12] Node 15 is reachable via gate 2.
+[12] Node 16 is reachable via gate 2.
+[12] Node 17 is reachable via gate 2.
+[12] FIB size 15
+[12] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[13] Node 2 is reachable via gate 1.
+[13] Node 3 is reachable via gate 1.
+[13] Node 4 is reachable via gate 1.
+[13] Node 5 is reachable via gate 0.
+[13] Node 6 is reachable via gate 1.
+[13] Node 7 is reachable via gate 1.
+[13] Node 8 is reachable via gate 1.
+[13] Node 9 is reachable via gate 0.
+[13] Node 10 is reachable via gate 1.
+[13] Node 11 is reachable via gate 1.
+[13] Node 12 is reachable via gate 1.
+[13] Node 14 is reachable via gate 1.
+[13] Node 15 is reachable via gate 1.
+[13] Node 16 is reachable via gate 1.
+[13] Node 17 is reachable via gate 2.
+[13] FIB size 15
+[13] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[14] Node 2 is reachable via gate 0.
+[14] Node 3 is reachable via gate 0.
+[14] Node 4 is reachable via gate 0.
+[14] Node 5 is reachable via gate 0.
+[14] Node 6 is reachable via gate 0.
+[14] Node 7 is reachable via gate 0.
+[14] Node 8 is reachable via gate 0.
+[14] Node 9 is reachable via gate 0.
+[14] Node 10 is reachable via gate 0.
+[14] Node 11 is reachable via gate 0.
+[14] Node 12 is reachable via gate 0.
+[14] Node 13 is reachable via gate 0.
+[14] Node 15 is reachable via gate 1.
+[14] Node 16 is reachable via gate 1.
+[14] Node 17 is reachable via gate 1.
+[14] FIB size 15
+[14] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[15] Node 2 is reachable via gate 0.
+[15] Node 3 is reachable via gate 0.
+[15] Node 4 is reachable via gate 0.
+[15] Node 5 is reachable via gate 0.
+[15] Node 6 is reachable via gate 0.
+[15] Node 7 is reachable via gate 0.
+[15] Node 8 is reachable via gate 0.
+[15] Node 9 is reachable via gate 0.
+[15] Node 10 is reachable via gate 0.
+[15] Node 11 is reachable via gate 0.
+[15] Node 12 is reachable via gate 0.
+[15] Node 13 is reachable via gate 0.
+[15] Node 14 is reachable via gate 0.
+[15] Node 16 is reachable via gate 2.
+[15] Node 17 is reachable via gate 2.
+[15] FIB size 15
+[15] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[16] Node 2 is reachable via gate 1.
+[16] Node 3 is reachable via gate 1.
+[16] Node 4 is reachable via gate 0.
+[16] Node 5 is reachable via gate 0.
+[16] Node 6 is reachable via gate 1.
+[16] Node 7 is reachable via gate 1.
+[16] Node 8 is reachable via gate 0.
+[16] Node 9 is reachable via gate 0.
+[16] Node 10 is reachable via gate 1.
+[16] Node 11 is reachable via gate 1.
+[16] Node 12 is reachable via gate 0.
+[16] Node 13 is reachable via gate 0.
+[16] Node 14 is reachable via gate 1.
+[16] Node 15 is reachable via gate 1.
+[16] Node 17 is reachable via gate 2.
+[16] FIB size 15
+[16] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+[17] Node 2 is reachable via gate 1.
+[17] Node 3 is reachable via gate 1.
+[17] Node 4 is reachable via gate 1.
+[17] Node 5 is reachable via gate 0.
+[17] Node 6 is reachable via gate 1.
+[17] Node 7 is reachable via gate 1.
+[17] Node 8 is reachable via gate 1.
+[17] Node 9 is reachable via gate 0.
+[17] Node 10 is reachable via gate 1.
+[17] Node 11 is reachable via gate 1.
+[17] Node 12 is reachable via gate 1.
+[17] Node 13 is reachable via gate 0.
+[17] Node 14 is reachable via gate 1.
+[17] Node 15 is reachable via gate 1.
+[17] Node 16 is reachable via gate 1.
+[17] FIB size 15
+[17] nodes in FIB compared to all nodes in network (minus me of course): 15/15
+
+End.

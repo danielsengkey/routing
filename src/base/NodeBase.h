@@ -114,7 +114,7 @@ class NodeBase : public cSimpleModule
         DISCOVERY_MESSAGE,
         DISCOVERY_REPLY,
         NETWORK_PACKET,
-        DISTANCE_VECTOR_MESSAGE
+        LINK_STATE_PACKET
     };
 
     /** Prepare network packet */

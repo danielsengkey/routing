@@ -13,11 +13,11 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "NodeDistanceVector.h"
+#include "NodeLinkState.h"
 
-Define_Module(NodeDistanceVector);
+Define_Module(NodeLinkState);
 
-void NodeDistanceVector::handleMessage(cMessage *msg)
+void NodeLinkState::handleMessage(cMessage *msg)
 {
     switch (msg->getKind()) {
         case DISCOVERY_MESSAGE:
@@ -29,8 +29,8 @@ void NodeDistanceVector::handleMessage(cMessage *msg)
         case NETWORK_PACKET:
             handleNetworkPacket(msg);
             break;
-        case DISTANCE_VECTOR_MESSAGE:
-            handleDistanceVectorMessage(msg);
+        case LINK_STATE_PACKET:
+            handleLinkStatePacket(msg);
             break;
         default:
             if(msg->isSelfMessage()) handleSelfMessage(msg);
@@ -39,47 +39,47 @@ void NodeDistanceVector::handleMessage(cMessage *msg)
     }
 }
 
-void NodeDistanceVector::handleSelfMessage(cMessage *msg)
+void NodeLinkState::handleSelfMessage(cMessage *msg)
 {
     delete msg;
 }
 
-void NodeDistanceVector::handleDistanceVectorMessage(cMessage *msg)
+void NodeLinkState::handleLinkStatePacket(cMessage *msg)
 {
-    DistanceVectorMessage *receivedDV = check_and_cast<DistanceVectorMessage *>(msg);
+    LinkStatePacket *receivedLSP = check_and_cast<LinkStatePacket *>(msg);
 
-    //EV << "[" << myId << "] Received new distance vector message from " << receivedDV->getSourceID() << endl;
+    //EV << "[" << myId << "] Received new link state message from " << receivedLSP->getSourceID() << endl;
     //EV << "Contents are:" << endl;
     //TODO How to handle node that is unknown?
-    for(auto it: receivedDV->getNeighbourList())
+    for(auto it: receivedLSP->getNeighbourList())
     {
         //if(it.first==myId) break;
         int cost = it.second+1;
-        EV << "Dst: " << it.first << " cost via " << receivedDV->getSourceID() << " is " << cost << endl;
+        EV << "Dst: " << it.first << " cost via " << receivedLSP->getSourceID() << " is " << cost << endl;
 
         if(it.first!=myId)
         {
-            rib[it.first][receivedDV->getArrivalGate()->getIndex()] = cost;
+            rib[it.first][receivedLSP->getArrivalGate()->getIndex()] = cost;
             if(fib.find(it.first)==fib.end())
             {
                 EV << "New node discovered." << endl;
-                fib[it.first] = receivedDV->getArrivalGate()->getIndex();
+                fib[it.first] = receivedLSP->getArrivalGate()->getIndex();
                 fib_updated = true;
             }
         }
     }
-    delete receivedDV;
+    delete receivedLSP;
     checkFIB();
-    if(fib_updated) broadcastMessage(prepareDistanceVectorMessage());
+    if(fib_updated) broadcastMessage(prepareLinkStatePacket());
 
     // Resetting the FIB changes marker.
     fib_updated = false;
 }
 
-DistanceVectorMessage* NodeDistanceVector::prepareDistanceVectorMessage()
+LinkStatePacket* NodeLinkState::prepareLinkStatePacket()
 {
-   DistanceVectorMessage *dvm = new DistanceVectorMessage("Distance Vector Message", DISTANCE_VECTOR_MESSAGE);
-   dvm->setSourceID(myId);
+   LinkStatePacket *lsp = new LinkStatePacket("Link State Packet", LINK_STATE_PACKET);
+   lsp->setSourceID(myId);
 
    // A temporary map to store the costs;
    std::map<int,int> nl;
@@ -94,12 +94,12 @@ DistanceVectorMessage* NodeDistanceVector::prepareDistanceVectorMessage()
         //nl[node] = cost
         nl[it.first] = t->second;
     }
-    dvm->getNeighbourList() = nl;
+    lsp->getNeighbourList() = nl;
 
-    return dvm;
+    return lsp;
 }
 
-void NodeDistanceVector::handleDiscoveryMessage(cMessage *msg)
+void NodeLinkState::handleDiscoveryMessage(cMessage *msg)
 {
     // Check and cast received message.
     DiscoveryMessage *receivedND = check_and_cast<DiscoveryMessage *>(msg);
@@ -124,15 +124,15 @@ void NodeDistanceVector::handleDiscoveryMessage(cMessage *msg)
         fib[receivedND->getSourceID()] = receivedND->getArrivalGate()->getIndex();
     }
 
-    // Send distance vector message when all the neighbours already listed in fib.
+    // Send Link State message when all the neighbours already listed in fib.
     // NOTE: Only applicable in point-to-point link!
-    if(fib.size()==totalGate) broadcastMessage(prepareDistanceVectorMessage());
+    if(fib.size()==totalGate) broadcastMessage(prepareLinkStatePacket());
 
     // Delete the message
     delete receivedND;
 }
 
-void NodeDistanceVector::checkFIB()
+void NodeLinkState::checkFIB()
 {
     for(auto it: fib)
     {
@@ -149,7 +149,7 @@ void NodeDistanceVector::checkFIB()
 }
 
 
-int NodeDistanceVector::findLowestCostGate(int node)
+int NodeLinkState::findLowestCostGate(int node)
 {
     RoutingTable::iterator gateIter = fib.find(node);
     int gateWithLowestCost = gateIter->second;
@@ -164,7 +164,7 @@ int NodeDistanceVector::findLowestCostGate(int node)
     return gateWithLowestCost;
 }
 
-void NodeDistanceVector::printRIB()
+void NodeLinkState::printRIB()
 {
     for(auto it : rib)
     {
@@ -176,7 +176,7 @@ void NodeDistanceVector::printRIB()
     }
 }
 
-void NodeDistanceVector::finish()
+void NodeLinkState::finish()
 {
     // Emit signals for stats recording.
     emit(signalRcvdND, rcvdND);

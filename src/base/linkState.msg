@@ -15,11 +15,9 @@
 
 //
 // Vector message definition.
-// This message is used in distance vector routing.
+// This message is used in link state routing.
 // It contains list of nodes and the metric to reach it
 // From the point of view of the message sender.
-// Although the name "vector", this message keeps
-// the pair of nodes and vectors in a std::map.
 // @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
 //
 
@@ -27,12 +25,12 @@ cplusplus{{
     #include <map>
     
     typedef
-    std::map<int,int> NodeVector;
+    std::map<int,int> LSDB;
 }}
 
-class noncobject NodeVector;
+class noncobject LSDB;
 
-message DistanceVectorMessage{
+message LinkStatePacket{
     int sourceID;
-    NodeVector neighbourList;
+    LSDB neighbourList;
 }

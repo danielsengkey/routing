@@ -13,12 +13,12 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package routing.e04dv;
+package routing.e04ls;
 import routing.base.*;
 //
 // TODO auto-generated module
 //
-simple NodeDistanceVector extends NodeDiscoveryBase
+simple NodeLinkState extends NodeDiscoveryBase
 {
-    @class(NodeDistanceVector);
+    @class(NodeLinkState);
 }

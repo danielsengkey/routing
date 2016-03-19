@@ -13,15 +13,15 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef __ROUTING_NODEDISTANCEVECTOR_H_
-#define __ROUTING_NODEDISTANCEVECTOR_H_
+#ifndef __ROUTING_NODELINKSTATE_H_
+#define __ROUTING_NODELINKSTATE_H_
 
 #include <omnetpp.h>
 #include <base/NodeDiscoveryBase.h>
-#include <base/vector_m.h>
+#include <base/linkState_m.h>
 
 /**
- * This module implements simple distance vector algorithm to form the routing table.
+ * This module implements simple link state routing to form the routing table.
  * Simple neighbour discovery is needed so the node will be able to identify its neighour.
  * Therefore, NodeSimpleDiscovery is inherited here. However, there is no reply message applied.
  * Instead, since the discovery broadcasted on all interfaces by all nodes, the sender will be
@@ -29,7 +29,7 @@
  * @author Daniel Febrian Sengkey <danielfebrian015@gmail.com>
  * @see NodeSimpleDiscovery
  */
-class NodeDistanceVector : public NodeDiscoveryBase
+class NodeLinkState : public NodeDiscoveryBase
 {
 
 protected:
@@ -55,7 +55,7 @@ protected:
     /**
      * Handler for received distance vector message.
      */
-    virtual void handleDistanceVectorMessage(cMessage *msg);
+    virtual void handleLinkStatePacket(cMessage *msg);
 
     /**
      * Self message handler.
@@ -76,7 +76,7 @@ protected:
     /**
      * Preparing distance vector message.
      */
-    DistanceVectorMessage* prepareDistanceVectorMessage();
+    LinkStatePacket* prepareLinkStatePacket();
 
     /**
      * Find the output gate with lowest cost to reach a node.
@@ -100,4 +100,4 @@ protected:
     virtual void checkFIB();
 };
 
-#endif /* __ROUTING_NODEDISTANCEVECTOR_H_ */
+#endif /* __ROUTING_NODELINKSTATE_H_ */

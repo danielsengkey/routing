@@ -1,0 +1,6 @@
+/doc/
+/out/
+/doxy.cfg
+/.computed/
+*_m.cc
+*_m.h
