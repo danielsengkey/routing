@@ -20,7 +20,7 @@ INCLUDE_PATH = \
     -Ie01random \
     -Ie02flooding \
     -Ie03discovery \
-    -Ie04ls
+    -Ie04dv
 
 # Additional object and library files to link with
 EXTRA_OBJS =
@@ -43,15 +43,17 @@ OBJS = \
     $O/e03discovery/NodeSimpleDiscovery.o \
     $O/e03discovery/NodeSimpleDiscovery2.o \
     $O/e03discovery/NodeSimpleDiscovery2ext.o \
-    $O/e04ls/NodeLinkState.o \
+    $O/e04dv/NodeDistanceVector.o \
     $O/base/linkState_m.o \
     $O/base/discovery_m.o \
+    $O/base/vector_m.o \
     $O/base/Packet_m.o
 
 # Message files
 MSGFILES = \
     base/linkState.msg \
     base/discovery.msg \
+    base/vector.msg \
     base/Packet.msg
 
 #------------------------------------------------------------------------------
@@ -130,14 +132,14 @@ clean:
 	$(Q)-rm -f e01random/*_m.cc e01random/*_m.h
 	$(Q)-rm -f e02flooding/*_m.cc e02flooding/*_m.h
 	$(Q)-rm -f e03discovery/*_m.cc e03discovery/*_m.h
-	$(Q)-rm -f e04ls/*_m.cc e04ls/*_m.h
+	$(Q)-rm -f e04dv/*_m.cc e04dv/*_m.h
 
 cleanall: clean
 	$(Q)-rm -rf $(PROJECT_OUTPUT_DIR)
 
 depend:
 	$(qecho) Creating dependencies...
-	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc e03discovery/*.cc e04ls/*.cc
+	$(Q)$(MAKEDEPEND) $(INCLUDE_PATH) -f Makefile -P\$$O/ -- $(MSG_CC_FILES)  ./*.cc base/*.cc e01random/*.cc e02flooding/*.cc e03discovery/*.cc e04dv/*.cc
 
 # DO NOT DELETE THIS LINE -- make depend depends on it.
 $O/base/NodeBase.o: base/NodeBase.cc \
@@ -154,6 +156,8 @@ $O/base/discovery_m.o: base/discovery_m.cc \
 	base/discovery_m.h
 $O/base/linkState_m.o: base/linkState_m.cc \
 	base/linkState_m.h
+$O/base/vector_m.o: base/vector_m.cc \
+	base/vector_m.h
 $O/e01random/NodeRandom.o: e01random/NodeRandom.cc \
 	base/NodeBase.h \
 	base/Packet_m.h \
@@ -185,11 +189,11 @@ $O/e03discovery/NodeSimpleDiscovery2ext.o: e03discovery/NodeSimpleDiscovery2ext.
 	base/discovery_m.h \
 	e03discovery/NodeSimpleDiscovery2.h \
 	e03discovery/NodeSimpleDiscovery2ext.h
-$O/e04ls/NodeLinkState.o: e04ls/NodeLinkState.cc \
+$O/e04dv/NodeDistanceVector.o: e04dv/NodeDistanceVector.cc \
 	base/NodeBase.h \
 	base/NodeDiscoveryBase.h \
 	base/Packet_m.h \
 	base/discovery_m.h \
-	base/linkState_m.h \
-	e04ls/NodeLinkState.h
+	base/vector_m.h \
+	e04dv/NodeDistanceVector.h
 
