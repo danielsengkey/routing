@@ -4,3 +4,7 @@
 /.computed/
 *_m.cc
 *_m.h
+*.sci
+*.sca
+*.vec
+results/

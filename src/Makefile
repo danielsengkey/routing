@@ -2,7 +2,7 @@
 # OMNeT++/OMNEST Makefile for routing
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep
+#  opp_makemake -f --deep -L/home/daniel/git/inet/out/$$\(CONFIGNAME\)/src -lINET -DINET_IMPORT -KINET_PROJ=/home/daniel/git/inet
 #
 
 # Name of target to be created (-o option)
@@ -26,7 +26,8 @@ INCLUDE_PATH = \
 EXTRA_OBJS =
 
 # Additional libraries (-L, -l options)
-LIBS =
+LIBS = -L$(INET_PROJ)/out/$(CONFIGNAME)/src  -lINET
+LIBS += -Wl,-rpath,`abspath $(INET_PROJ)/out/$(CONFIGNAME)/src`
 
 # Output directory
 PROJECT_OUTPUT_DIR = ../out
@@ -44,17 +45,18 @@ OBJS = \
     $O/e03discovery/NodeSimpleDiscovery2.o \
     $O/e03discovery/NodeSimpleDiscovery2ext.o \
     $O/e04dv/NodeDistanceVector.o \
-    $O/base/linkState_m.o \
     $O/base/discovery_m.o \
     $O/base/vector_m.o \
     $O/base/Packet_m.o
 
 # Message files
 MSGFILES = \
-    base/linkState.msg \
     base/discovery.msg \
     base/vector.msg \
     base/Packet.msg
+
+# Other makefile variables (-K)
+INET_PROJ=/home/daniel/git/inet
 
 #------------------------------------------------------------------------------
 
@@ -80,7 +82,7 @@ include $(CONFIGFILE)
 OMNETPP_LIB_SUBDIR = $(OMNETPP_LIB_DIR)/$(TOOLCHAIN_NAME)
 OMNETPP_LIBS = -L"$(OMNETPP_LIB_SUBDIR)" -L"$(OMNETPP_LIB_DIR)" -loppmain$D $(USERIF_LIBS) $(KERNEL_LIBS) $(SYS_LIBS)
 
-COPTS = $(CFLAGS)  $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
+COPTS = $(CFLAGS) -DINET_IMPORT $(INCLUDE_PATH) -I$(OMNETPP_INCL_DIR)
 MSGCOPTS = $(INCLUDE_PATH)
 
 # we want to recompile everything if COPTS changes,
@@ -154,8 +156,6 @@ $O/base/Packet_m.o: base/Packet_m.cc \
 	base/Packet_m.h
 $O/base/discovery_m.o: base/discovery_m.cc \
 	base/discovery_m.h
-$O/base/linkState_m.o: base/linkState_m.cc \
-	base/linkState_m.h
 $O/base/vector_m.o: base/vector_m.cc \
 	base/vector_m.h
 $O/e01random/NodeRandom.o: e01random/NodeRandom.cc \

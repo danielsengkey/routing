@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<config>
+  <interface hosts="hostA" names="eth0" address="192.168.0.2" netmask="255.255.255.0"/>
+  <interface hosts="hostB" names="eth0" address="192.168.0.3" netmask="255.255.255.0"/>
+  <interface hosts="hostC" names="eth0" address="192.168.1.16" netmask="255.255.255.0"/>
+  <interface hosts="hostD" names="eth0" address="192.168.1.254" netmask="255.255.255.0"/>
+
+  <interface hosts="router" names="eth0" address="192.168.0.1" netmask="255.255.255.0"/>
+  <interface hosts="router" names="eth1" address="192.168.1.1" netmask="255.255.255.0"/>
+
+  <route hosts="hostA" destination="*" gateway="192.168.0.1"/>
+  <route hosts="hostB" destination="*" gateway="192.168.0.1"/>
+  <route hosts="hostC" destination="*" gateway="192.168.1.1"/>
+  <route hosts="hostD" destination="*" gateway="192.168.1.1"/>
+</config>
