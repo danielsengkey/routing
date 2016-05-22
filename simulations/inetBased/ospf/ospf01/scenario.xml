@@ -1,0 +1,8 @@
+<scenario>
+	<at t='80s'>
+		<tell module='lifecycleController' operation='NodeShutdownOperation' target='RT_A'/>
+	</at>
+	<at t='130s'>
+		<tell module='lifecycleController' operation='NodeShutdownOperation' target='RT_B'/>
+	</at>
+</scenario>

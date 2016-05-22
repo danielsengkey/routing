@@ -13,20 +13,20 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-package routing.simulations.inetBased.rip.rip01;
+package routing.simulations.inetBased.ospf.ospf01;
 import inet.common.lifecycle.LifecycleController;
 import inet.common.scenario.ScenarioManager;
 import inet.networklayer.configurator.ipv4.IPv4NetworkConfigurator;
 import inet.networklayer.ipv4.RoutingTableRecorder;
+import inet.node.inet.StandardHost;
+import inet.node.ospfv2.OSPFRouter;
 import inet.node.ethernet.Eth100M;
 import inet.node.ethernet.Eth1G;
-import inet.node.inet.StandardHost;
-import inet.node.rip.RIPRouter;
 
-network ripBasic
+network ospfBasic
 {
     @display("bgb=940,362");
-    submodules:
+	submodules:
         cli: StandardHost {
             @display("p=27,202");
             gates:
@@ -40,39 +40,36 @@ network ripBasic
 
         configurator: IPv4NetworkConfigurator {
             @display("p=51,22");
-            config = xml(
-            	"<config>"
-            		+"<interface hosts='*' address='192.168.0.x' netmask='255.255.255.x'/>"
-            		+"<route hosts='cli' destination='*' netmask='*' gateway='primaryRouter1'/>"
-            		+"<route hosts='srv' destination='*' netmask='*' gateway='primaryRouter2'/>"
-            	+"</config>");
         }
 
         scenarioManager: ScenarioManager {
             @display("p=167,22");
         }
-        RT_A: RIPRouter {
+        RT_A: OSPFRouter {
             @display("p=472,83");
             gates:
                 ethg[2];
         }
-        RT_B: RIPRouter {
+        RT_B: OSPFRouter {
             @display("p=472,321");
             gates:
                 ethg[2];
         }
-        RT_C: RIPRouter {
+        RT_C: OSPFRouter {
             @display("p=204,202");
             gates:
                 ethg[4];
         }
-        RT_D: RIPRouter {
+        RT_D: OSPFRouter {
             @display("p=736,202");
             gates:
                 ethg[4];
         }
         rtr: RoutingTableRecorder {
             @display("p=258,22");
+        }
+        lifecycleController: LifecycleController {
+            @display("p=348,22");
         }
     connections:
         cli.ethg[0] <--> Eth1G <--> RT_C.ethg[3];
