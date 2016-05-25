@@ -1,0 +1,3 @@
+This directory contains OSPFv2 simulation on an imaginary network.
+Due to several bugs within INET OSPF implementation,
+some aspects are not being simulated.

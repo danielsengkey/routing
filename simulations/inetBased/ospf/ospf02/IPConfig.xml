@@ -1,63 +1,63 @@
 <config>
-	<!-- Network and Router Manado -->
+	<!-- Router Manado -->
 		<interface hosts="RT_Manado" names="eth0" address="172.16.10.25" netmask="255.255.255.252"/>
 		<interface hosts="RT_Manado" names="eth1" address="172.16.10.21" netmask="255.255.255.252"/>
 		<interface hosts="RT_Manado" names="eth2" address="172.16.10.17" netmask="255.255.255.252"/>
 		<interface hosts="RT_Manado" names="eth3" address="172.16.10.33" netmask="255.255.255.252"/>
 		<interface hosts="RT_Manado" names="eth4" address="172.16.10.29" netmask="255.255.255.252"/>
 		<interface hosts="RT_Manado" names="eth5" address="172.16.6.9" netmask="255.255.255.252"/>
-		<interface among="RT_Manado Manado_Net.*" address="172.16.x.x" netmask="255.255.252.0"/>
+		<interface hosts="RT_Manado" names="eth6" address="172.16.0.1" netmask="255.255.252.0"/>
 
 	<!-- Router Tomohon -->
 		<interface hosts="RT_Tomohon" names="eth0" address="172.16.10.26" netmask="255.255.255.252"/>
 		<interface hosts="RT_Tomohon" names="eth1" address="172.16.10.37" netmask="255.255.255.252"/>
-		<interface hosts="RT_Tomohon" names="eth2" address="172.16.10.49" netmask="255.255.255.252"/>
+		<interface hosts="RT_Tomohon" names="eth2" address="172.16.10.41" netmask="255.255.255.252"/>
 		<interface hosts="RT_Tomohon" names="eth3" address="172.16.10.45" netmask="255.255.255.252"/>
-		<interface hosts="RT_Tomohon" names="eth4" address="172.16.10.41" netmask="255.255.255.252"/>
+		<interface hosts="RT_Tomohon" names="eth4" address="172.16.10.49" netmask="255.255.255.252"/>
 
 	<!-- Router Tondano -->
 		<interface hosts="RT_Tondano" names="eth0" address="172.16.10.22" netmask="255.255.255.252"/>
 		<interface hosts="RT_Tondano" names="eth1" address="172.16.10.38" netmask="255.255.255.252"/>
 		<interface hosts="RT_Tondano" names="eth2" address="172.16.10.53" netmask="255.255.255.252"/>
-		<interface hosts="RT_Tondano" names="eth3" address="172.16.10.61" netmask="255.255.255.252"/>
-		<interface hosts="RT_Tondano" names="eth4" address="172.16.10.57" netmask="255.255.255.252"/>
+		<interface hosts="RT_Tondano" names="eth3" address="172.16.10.57" netmask="255.255.255.252"/>
+		<interface hosts="RT_Tondano" names="eth4" address="172.16.10.61" netmask="255.255.255.252"/>
 
 	<!-- Router Gorontalo -->
 		<interface hosts="RT_Gorontalo" names="eth0" address="172.16.10.18" netmask="255.255.255.252"/>
-		<interface hosts="RT_Gorontalo" names="eth1" address="172.16.10.54" netmask="255.255.255.252"/>
-		<interface hosts="RT_Gorontalo" names="eth2" address="172.16.10.65" netmask="255.255.255.252"/>
-		<interface hosts="RT_Gorontalo" names="eth3" address="172.16.10.69" netmask="255.255.255.252"/>
-		<interface hosts="RT_Gorontalo" names="eth4" address="172.16.10.42" netmask="255.255.255.252"/>
+		<interface hosts="RT_Gorontalo" names="eth1" address="172.16.10.42" netmask="255.255.255.252"/>
+		<interface hosts="RT_Gorontalo" names="eth2" address="172.16.10.54" netmask="255.255.255.252"/>
+		<interface hosts="RT_Gorontalo" names="eth3" address="172.16.10.65" netmask="255.255.255.252"/>
+		<interface hosts="RT_Gorontalo" names="eth4" address="172.16.10.69" netmask="255.255.255.252"/>
 		<interface hosts="RT_Gorontalo" names="eth5" address="172.16.9.193" netmask="255.255.255.248"/>
 
 	<!-- Router Amurang -->
 		<interface hosts="RT_Amurang" names="eth0" address="172.16.10.34" netmask="255.255.255.252"/>
-		<interface hosts="RT_Amurang" names="eth1" address="172.16.10.66" netmask="255.255.255.252"/>
-		<interface hosts="RT_Amurang" names="eth2" address="172.16.10.73" netmask="255.255.255.252"/>
-		<interface hosts="RT_Amurang" names="eth3" address="172.16.10.58" netmask="255.255.255.252"/>
-		<interface hosts="RT_Amurang" names="eth4" address="172.16.10.46" netmask="255.255.255.252"/>
+		<interface hosts="RT_Amurang" names="eth1" address="172.16.10.46" netmask="255.255.255.252"/>
+		<interface hosts="RT_Amurang" names="eth2" address="172.16.10.66" netmask="255.255.255.252"/>
+		<interface hosts="RT_Amurang" names="eth3" address="172.16.10.73" netmask="255.255.255.252"/>
+		<interface hosts="RT_Amurang" names="eth4" address="172.16.10.58" netmask="255.255.255.252"/>
 		<interface hosts="RT_Amurang" names="eth5" address="172.16.10.9" netmask="255.255.255.248"/>
 
 	<!-- Router Bitung -->
 		<interface hosts="RT_Bitung" names="eth0" address="172.16.10.30" netmask="255.255.255.252"/>
-		<interface hosts="RT_Bitung" names="eth1" address="172.16.10.74" netmask="255.255.255.252"/>
-		<interface hosts="RT_Bitung" names="eth2" address="172.16.10.50" netmask="255.255.255.252"/>
-		<interface hosts="RT_Bitung" names="eth3" address="172.16.10.62" netmask="255.255.255.252"/>
-		<interface hosts="RT_Bitung" names="eth4" address="172.16.10.70" netmask="255.255.255.252"/>
-		<interface hosts="RT_Bitung" names="eth5" address="172.16.10.1" netmask="255.255.255.252"/>
-		<interface hosts="RT_Bitung" names="eth6" address="172.16.10.5" netmask="255.255.255.252"/>
+		<interface hosts="RT_Bitung" names="eth1" address="172.16.10.50" netmask="255.255.255.252"/>
+		<interface hosts="RT_Bitung" names="eth2" address="172.16.10.70" netmask="255.255.255.252"/>
+		<interface hosts="RT_Bitung" names="eth3" address="172.16.10.74" netmask="255.255.255.252"/>
+		<interface hosts="RT_Bitung" names="eth4" address="172.16.10.1" netmask="255.255.255.252"/>
+		<interface hosts="RT_Bitung" names="eth5" address="172.16.10.5" netmask="255.255.255.252"/>
+		<interface hosts="RT_Bitung" names="eth6" address="172.16.10.62" netmask="255.255.255.252"/>
 
 	<!-- Router Popayato -->
 		<interface hosts="RT_Popayato" names="eth0" address="172.16.9.194" netmask="255.255.255.248"/>
-		<interface among="RT_Popayato Popayato_Net.*" address="172.16.9.x" netmask="255.255.255.192"/>
+		<interface hosts="RT_Popayato" names="eth1" address="172.16.9.129" netmask="255.255.255.192"/>
 
 	<!-- Router Bintauna -->
 		<interface hosts="RT_Bintauna" names="eth0" address="172.16.9.195" netmask="255.255.255.248"/>
-		<interface among="RT_Bintauna Bintauna_Net.*" address="172.16.8.x" netmask="255.255.255.0"/>
+		<interface hosts="RT_Bintauna" names="eth1" address="172.16.8.1" netmask="255.255.255.0"/>
 
 	<!-- Router Kwandang -->
 		<interface hosts="RT_Kwandang" names="eth0" address="172.16.9.196" netmask="255.255.255.248"/>
-		<interface among="RT_Kwandang Kwandang_Net.*" address="172.16.9.x" netmask="255.255.255.128"/>
+		<interface hosts="RT_Kwandang" names="eth1" address="172.16.9.1" netmask="255.255.255.128"/>
 
 	<!-- Router Tanawangko -->
 		<interface hosts="RT_Tanawangko" names="eth0" address="172.16.10.10" netmask="255.255.255.248"/>
@@ -87,18 +87,41 @@
 	<!-- Router Kotamobagu -->
 		<interface hosts="RT_Kotamobagu" names="eth0" address="172.16.6.4" netmask="255.255.255.248"/>
 		<interface hosts="RT_Kotamobagu" names="eth1" address="172.16.6.13" netmask="255.255.255.252"/>
-		<interface among="RT_Kotamobagu Kotamobagu_Net.*" address="172.16.x.x" netmask="255.255.252.0"/>
+		<interface hosts="RT_Kotamobagu" names="eth2" address="172.16.4.1" netmask="255.255.254.0"/>
 
 	<!-- Router Inobonto -->
-		<interface hosts="RT_Inobonto" names="eth0" address="172.16.6.14" netmask="255.255.255.248"/>
+		<interface hosts="RT_Inobonto" names="eth0" address="172.16.6.14" netmask="255.255.255.252"/>
 		<interface hosts="RT_Inobonto" names="eth1" address="172.16.7.113" netmask="255.255.255.248"/>
-		<interface among="RT_Inobonto Inobonto_Net.*" address="172.16.7.x" netmask="255.255.255.192"/>
+		<interface hosts="RT_Inobonto" names="eth2" address="172.16.7.1" netmask="255.255.255.192"/>
 
 	<!-- Router Ibolian -->
 		<interface hosts="RT_Ibolian" names="eth0" address="172.16.7.115" netmask="255.255.255.248"/>
-		<interface among="RT_Ibolian Ibolian_Net.*" address="172.16.7.x" netmask="255.255.255.192"/>
+		<interface hosts="RT_Ibolian" names="eth1" address="172.16.7.65" netmask="255.255.255.224"/>
 
 	<!-- Router Ilongkou -->
 		<interface hosts="RT_Ilongkou" names="eth0" address="172.16.7.114" netmask="255.255.255.248"/>
-		<interface among="RT_Ilongkou Ilongkou_Net.*" address="172.16.7.x" netmask="255.255.255.240"/>
+		<interface hosts="RT_Ilongkou" names="eth1" address="172.16.7.97" netmask="255.255.255.240"/>
+		
+	<!-- Edge Networks -->
+		<interface hosts="Manado_Net.*" names="eth0" address="172.16.x.x" netmask="255.255.252.0"/>
+		
+		<interface hosts="Popayato_Net.*" names="eth0" address="172.16.9.x" netmask="255.255.255.192"/>
+		<interface hosts="Bintauna_Net.*" names="eth0" address="172.16.8.x" netmask="255.255.255.0"/>
+		<interface hosts="Kwandang_Net.*" names="eth0" address="172.16.9.x" netmask="255.255.255.128"/>
+		
+		<interface hosts="Kotamobagu_Net.*" names="eth0" address="172.16.x.x" netmask="255.255.254.0"/>
+		<interface hosts="Inobonto_Net.*" names="eth0" address="172.16.7.x" netmask="255.255.255.192"/>
+		<interface hosts="Ibolian_Net.*" names="eth0" address="172.16.7.x" netmask="255.255.255.224"/>
+		<interface hosts="Ilongkou_Net.*" names="eth0" address="172.16.7.x" netmask="255.255.255.240"/>
+
+		<route hosts="Manado_Net.*" destination="*" netmask="*" gateway="172.16.0.1"/>
+		
+		<route hosts="Popayato_Net.*" destination="*" netmask="*" gateway="172.16.9.129"/>
+		<route hosts="Bintauna_Net.*" destination="*" netmask="*" gateway="172.16.8.1"/>
+		<route hosts="Kwandang_Net.*" destination="*" netmask="*" gateway="172.16.9.1"/>
+		
+		<route hosts="Kotamobagu_Net.*" destination="*" netmask="*" gateway="172.16.4.1"/>
+		<route hosts="Inobonto_Net.*" destination="*" netmask="*" gateway="172.16.7.1"/>
+		<route hosts="Ibolian_Net.*" destination="*" netmask="*" gateway="172.16.7.65"/>
+		<route hosts="Ilongkou_Net.*" destination="*" netmask="*" gateway="172.16.7.97"/>
 </config>

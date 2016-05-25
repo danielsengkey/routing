@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<OSPFASConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="OSPF.xsd">
+
+  <!-- Area -->
+  <Area id="0.0.0.0">
+    <AddressRange address="172.16.0.0" mask="255.255.240.0" status="Advertise" />
+  </Area>
+
+
+
+  <!-- Routers -->
+	<Router name="RT_Manado" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="1" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth4" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth5" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<BroadcastInterface ifName="eth6" areaID="0.0.0.0" interfaceOutputCost="1" />
+    	</Router>
+    	
+    	<Router name="RT_Tomohon" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="1" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1" />
+    		<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth4" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	
+    	<Router name="RT_Tondano" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1" />
+    		<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="1" />
+    		<PointToPointInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth4" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	
+    	<Router name="RT_Gorontalo" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="1" />
+    		<PointToPointInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth4" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth5" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	
+    	<Router name="RT_Amurang" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth4" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth5" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	
+    	<Router name="RT_Bitung" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth4" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth5" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<PointToPointInterface ifName="eth6" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+
+    	<Router name="RT_Popayato" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+
+    	<Router name="RT_Bintauna" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+
+    	<Router name="RT_Kwandang" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+ 
+    	<Router name="RT_Tanawangko" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	 
+    	<Router name="RT_Tumpaan" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	 
+    	<Router name="RT_Pondang" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	 
+    	<Router name="RT_Sagerat" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	 
+    	<Router name="RT_Manembo2" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+
+    	<Router name="RT_Bolmong" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="10" />
+    	</Router>
+    	
+    	<Router name="RT_Bolangitang" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	 
+    	<Router name="RT_Bolanguki" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	
+    	<Router name="RT_Kotamobagu" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="10" />
+     		<BroadcastInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="100" />   		
+    	</Router>
+    	
+    	<Router name="RT_Inobonto" RFC1583Compatible="true">
+    		<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+     		<BroadcastInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="100" />   		
+    	</Router>
+    	
+    	<Router name="RT_Ilongkou" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+    	
+    	<Router name="RT_Ibolian" RFC1583Compatible="true">
+    		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
+    		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
+    	</Router>
+<!--
+  <Router name="RT11" RFC1583Compatible="true">
+    <BroadcastInterface toward="Area3" areaID="0.0.0.3" interfaceOutputCost="1" />
+    <BroadcastInterface toward="Area2" areaID="0.0.0.2" interfaceOutputCost="2" />
+    <VirtualLink endPointRouterID="RT10%routerId" transitAreaID="0.0.0.2" />
+  </Router>
+
+  <Router name="Area3.RT12" RFC1583Compatible="true">
+    <BroadcastInterface toward="Area3.N9" areaID="0.0.0.3" interfaceOutputCost="1" /> -->
+<!--    <BroadcastInterface toward="Area3.H1" areaID="0.0.0.3" linkCost="10"/> -->
+<!--    <HostInterface toward="Area3.H1" areaID="0.0.0.3" attachedHost="Area3.H1" linkCost="10" />
+    <BroadcastInterface toward="Area3.N10" areaID="0.0.0.3" interfaceOutputCost="2" />
+  </Router>
+  -->
+</OSPFASConfig>

@@ -79,7 +79,7 @@ module MetroManado
             cli[i].ethg[0] <--> Eth10M <--> sw.ethg++;
         }
         for i=0..s-1 {
-            srv[i].ethg[0] <--> Eth100M <--> sw.ethg++;
+            srv[i].ethg[0] <--> Eth1G <--> sw.ethg++;
         }
         sw.ethg++ <--> ethg;
 }
@@ -162,7 +162,7 @@ network Sulutgo
             gates:
                 ethg[1];
         }
-        RT_Manembo: Router {
+        RT_Manembo2: Router {
             @display("p=948,659");
             gates:
                 ethg[1];
@@ -222,7 +222,7 @@ network Sulutgo
         }
         Ilongkou_Net: LAN {
             parameters:
-                @display("t=14 Clients;p=1088,720");
+                @display("t=13 Clients;p=1088,720");
         }
         Ibolian_Net: LAN {
             parameters:
@@ -245,26 +245,26 @@ network Sulutgo
     connections:
         // Backbone
         RT_Manado.ethg[0] <--> Eth10G <--> RT_Tomohon.ethg[0];
-        RT_Manado.ethg[1] <--> Eth1G <--> RT_Tondano.ethg[0];
-        RT_Manado.ethg[2] <--> Eth1G <--> RT_Gorontalo.ethg[0];
-        RT_Manado.ethg[3] <--> Eth1G <--> RT_Amurang.ethg[0];
+        RT_Manado.ethg[1] <--> Eth100M <--> RT_Tondano.ethg[0];
+        RT_Manado.ethg[2] <--> Eth100M <--> RT_Gorontalo.ethg[0];
+        RT_Manado.ethg[3] <--> Eth100M <--> RT_Amurang.ethg[0];
         RT_Manado.ethg[4] <--> Eth1G <--> RT_Bitung.ethg[0];
         RT_Manado.ethg[5] <--> Eth1G <--> RT_Bolmong.ethg[0];
         RT_Manado.ethg[6] <--> Eth10G <--> Manado_Net.ethg;
 
-        RT_Amurang.ethg[1] <--> Eth1G <--> RT_Tomohon.ethg[3];
-        RT_Amurang.ethg[2] <--> Eth1G <--> RT_Gorontalo.ethg[3];
-        RT_Amurang.ethg[3] <--> Eth1G <--> RT_Bitung.ethg[3];
-        RT_Amurang.ethg[4] <--> Eth1G <--> RT_Tondano.ethg[3];
-
         RT_Tomohon.ethg[1] <--> Eth10G <--> RT_Tondano.ethg[1];
-        RT_Tomohon.ethg[2] <--> Eth1G <--> RT_Bitung.ethg[1];
-        RT_Tomohon.ethg[4] <--> Eth1G <--> RT_Gorontalo.ethg[1];
+        RT_Tomohon.ethg[2] <--> Eth100M <--> RT_Gorontalo.ethg[1];
+        RT_Tomohon.ethg[3] <--> Eth100M <--> RT_Amurang.ethg[1];
+        RT_Tomohon.ethg[4] <--> Eth100M <--> RT_Bitung.ethg[1];
 
-        RT_Gorontalo.ethg[2] <--> Eth10G <--> RT_Tondano.ethg[2];
-        RT_Gorontalo.ethg[4] <--> Eth1G <--> RT_Bitung.ethg[2];
+        RT_Tondano.ethg[2] <--> Eth10G <--> RT_Gorontalo.ethg[2];
+        RT_Tondano.ethg[3] <--> Eth100M <--> RT_Amurang.ethg[4];
+        RT_Tondano.ethg[4] <--> Eth100M <--> RT_Bitung.ethg[6];
 
-        RT_Bitung.ethg[6] <--> Eth1G <--> RT_Tondano.ethg[4];
+        RT_Gorontalo.ethg[3] <--> Eth1G <--> RT_Amurang.ethg[2];
+        RT_Gorontalo.ethg[4] <--> Eth100M <--> RT_Bitung.ethg[2];
+
+        RT_Amurang.ethg[3] <--> Eth1G <--> RT_Bitung.ethg[3];
 
         // Gorontalo Network
         RT_Gorontalo.ethg[5] <--> Eth1G <--> metro_gto.ethg++;
@@ -277,7 +277,7 @@ network Sulutgo
         RT_Kwandang.ethg[1] <--> Eth100M <--> Kwandang_Net.ethg;
 
         // Urban Bolmong
-        metro_bolmong.ethg++ <--> Eth100M <--> RT_Bolmong.ethg[1];
+        metro_bolmong.ethg++ <--> Eth1G <--> RT_Bolmong.ethg[1];
         metro_bolmong.ethg++ <--> Eth1G <--> RT_Kotamobagu.ethg[0];
         metro_bolmong.ethg++ <--> Eth100M <--> RT_Bolangitang.ethg[0];
         metro_bolmong.ethg++ <--> Eth100M <--> RT_Bolanguki.ethg[0];
@@ -296,7 +296,7 @@ network Sulutgo
 
 		// Bitung Metro
         RT_Sagerat.ethg[0] <--> Eth100M <--> RT_Bitung.ethg[4];
-        RT_Manembo.ethg[0] <--> Eth100M <--> RT_Bitung.ethg[5];
+        RT_Manembo2.ethg[0] <--> Eth100M <--> RT_Bitung.ethg[5];
 
         // Minsel
         metro_amg.ethg++ <--> Eth100M <--> RT_Amurang.ethg[5];
