@@ -15,23 +15,23 @@
 	
   <!-- Routers -->
   <Router name="RT_A" RFC1583Compatible="true">
-    <BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="1"	/>
-    <BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+    <PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+    <PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1"	/>
   </Router>
    <Router name="RT_B" RFC1583Compatible="true">
-    <BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="1"	/>
-    <BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+    <PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+    <PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1"	/>
   </Router>
    <Router name="RT_C" RFC1583Compatible="true">
-    <BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10"	/>
-    <BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1"	/>
-    <BroadcastInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="1"	/>
-    <BroadcastInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="1"	/>    
+    <PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10"	/>
+    <PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+    <PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+    <HostInterface ifName="eth3" areaID="0.0.0.0" attachedHost="cli" interfaceOutputCost="1"	/>    
   </Router>
   <Router name="RT_D" RFC1583Compatible="true">
-	<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10"	/>
-	<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="5"	/>
- 	<BroadcastInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="1"	/>
-	<BroadcastInterface ifName="eth3" areaID="0.0.0.0" interfaceOutputCost="1"	/>  
+	<PointToPointInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="10"	/>
+	<PointToPointInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="5"	/>
+ 	<PointToPointInterface ifName="eth2" areaID="0.0.0.0" interfaceOutputCost="1"	/>
+	<HostInterface ifName="eth3" areaID="0.0.0.0" attachedHost="srv" interfaceOutputCost="1"	/>  
  </Router>
 </OSPFASConfig>
