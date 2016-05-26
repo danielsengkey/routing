@@ -161,12 +161,4 @@
     		<BroadcastInterface ifName="eth0" areaID="0.0.0.4" interfaceOutputCost="100" />
     		<BroadcastInterface ifName="eth1" areaID="0.0.0.4" interfaceOutputCost="100" />
     	</Router>
-
-<!--
-  <Router name="RT11" RFC1583Compatible="true">
-    <BroadcastInterface toward="Area3" areaID="0.0.0.3" interfaceOutputCost="1" />
-    <BroadcastInterface toward="Area2" areaID="0.0.0.2" interfaceOutputCost="2" />
-    <VirtualLink endPointRouterID="RT10%routerId" transitAreaID="0.0.0.2" />
-  </Router>
--->
 </OSPFASConfig>

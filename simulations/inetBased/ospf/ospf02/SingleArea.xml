@@ -132,18 +132,4 @@
     		<BroadcastInterface ifName="eth0" areaID="0.0.0.0" interfaceOutputCost="100" />
     		<BroadcastInterface ifName="eth1" areaID="0.0.0.0" interfaceOutputCost="100" />
     	</Router>
-<!--
-  <Router name="RT11" RFC1583Compatible="true">
-    <BroadcastInterface toward="Area3" areaID="0.0.0.3" interfaceOutputCost="1" />
-    <BroadcastInterface toward="Area2" areaID="0.0.0.2" interfaceOutputCost="2" />
-    <VirtualLink endPointRouterID="RT10%routerId" transitAreaID="0.0.0.2" />
-  </Router>
-
-  <Router name="Area3.RT12" RFC1583Compatible="true">
-    <BroadcastInterface toward="Area3.N9" areaID="0.0.0.3" interfaceOutputCost="1" /> -->
-<!--    <BroadcastInterface toward="Area3.H1" areaID="0.0.0.3" linkCost="10"/> -->
-<!--    <HostInterface toward="Area3.H1" areaID="0.0.0.3" attachedHost="Area3.H1" linkCost="10" />
-    <BroadcastInterface toward="Area3.N10" areaID="0.0.0.3" interfaceOutputCost="2" />
-  </Router>
-  -->
 </OSPFASConfig>
